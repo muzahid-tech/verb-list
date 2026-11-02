@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5">
+<meta name="theme-color" content="#0b1220">
+<meta name="description" content="Verb Vault — 1200+ English verbs with Past, Past Participle, s/es/ies forms and Assamese meanings. For SEBA, AHSEC, CBSE and NCERT students. By Muzahid The Tech Master.">
+<title>Verb Vault · English Verbs (SEBA · AHSEC · CBSE · NCERT) · Muzahid The Tech Master</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+/* ================= THEME TOKENS ================= */
+:root{
+  --bg:#0b1220; --bg2:#0e1728; --card:#131f33; --card2:#18273f;
+  --line:#22314b; --txt:#e8eef8; --mut:#8ea3c2;
+  --acc:#38bdf8; --acc2:#a78bfa; --ok:#34d399; --warn:#fbbf24;
+  --bar:rgba(11,18,32,.88); --shadow:0 10px 30px rgba(0,0,0,.45);
+  --r:16px;
+}
+[data-theme="light"]{
+  --bg:#f2f6fc; --bg2:#e9f0f9; --card:#ffffff; --card2:#f4f8fd;
+  --line:#dbe4f0; --txt:#0d1b2a; --mut:#5b7093;
+  --acc:#0284c7; --acc2:#7c3aed; --ok:#059669; --warn:#b45309;
+  --bar:rgba(242,246,252,.92); --shadow:0 10px 26px rgba(16,42,80,.10);
+  --r:16px;
+}
+
+*{ -webkit-tap-highlight-color:transparent; }
+html{ scroll-behavior:smooth; }
+html,body{ overscroll-behavior-y:contain; }
+body{
+  margin:0; background:var(--bg); color:var(--txt);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Bengali",sans-serif;
+  padding-bottom:calc(86px + env(safe-area-inset-bottom));
+  transition:background .25s ease,color .25s ease;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{ background:var(--acc); color:#001521; }
+
+/* ================= WATERMARK (SCREEN) ================= */
+#watermark{
+  position:fixed; top:50%; left:50%;
+  transform:translate(-50%,-50%) rotate(-32deg);
+  font-size:clamp(1.35rem,7vw,3.8rem);
+  font-weight:900; letter-spacing:3px;
+  color:var(--acc); opacity:.055;
+  pointer-events:none; user-select:none;
+  z-index:50; white-space:nowrap;
+  text-align:center; line-height:1.15;
+  text-transform:uppercase;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+[data-theme="light"] #watermark{
+  color:var(--acc2); opacity:.07;
+}
+
+/* ================= APP BAR ================= */
+.appbar{
+  position:sticky; top:0; z-index:60;
+  background:var(--bar);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);
+  backdrop-filter:saturate(180%) blur(16px);
+  border-bottom:1px solid var(--line);
+  padding:calc(8px + env(safe-area-inset-top)) 12px 10px;
+}
+.bar-row{ display:flex; align-items:center; gap:10px; }
+.brand{
+  display:flex; align-items:center; gap:8px;
+  font-weight:800; font-size:1.02rem; letter-spacing:-.2px;
+  background:linear-gradient(92deg,var(--acc),var(--acc2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  flex:1; min-width:0;
+}
+.brand .ico{ -webkit-text-fill-color:initial; color:initial; font-size:1.15rem; }
+.brand small{
+  display:block; font-size:.62rem; font-weight:600; letter-spacing:.4px;
+  color:var(--mut); -webkit-text-fill-color:var(--mut);
+  text-transform:uppercase;
+}
+.iconbtn{
+  width:40px; height:40px; border-radius:12px; border:1px solid var(--line);
+  background:var(--card); color:var(--txt); font-size:1.05rem; line-height:1;
+  display:grid; place-items:center; cursor:pointer; flex:0 0 auto;
+  transition:transform .12s ease,background .2s ease,border-color .2s;
+}
+.iconbtn:active{ transform:scale(.92); }
+.iconbtn:hover{ border-color:var(--acc); }
+
+/* ================= SEARCH ================= */
+.searchwrap{ position:relative; margin-top:10px; }
+.searchwrap .mag{
+  position:absolute; left:13px; top:50%; transform:translateY(-50%);
+  color:var(--mut); font-size:.95rem; pointer-events:none;
+}
+#q{
+  width:100%; height:46px; border-radius:14px;
+  background:var(--card); border:1px solid var(--line); color:var(--txt);
+  padding:0 44px 0 38px; font-size:.95rem; outline:none;
+  transition:border-color .2s,box-shadow .2s,background .2s;
+}
+#q::placeholder{ color:var(--mut); }
+#q:focus{ border-color:var(--acc); box-shadow:0 0 0 3px rgba(56,189,248,.18); }
+#clearBtn{
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  width:30px; height:30px; border-radius:9px; border:0; display:none;
+  background:var(--card2); color:var(--mut); font-size:.8rem; cursor:pointer;
+}
+#clearBtn:active{ transform:translateY(-50%) scale(.9); }
+
+/* ================= TABS ================= */
+.tabs{
+  display:flex; gap:8px; margin-top:10px;
+  overflow-x:auto; scrollbar-width:none; padding-bottom:2px;
+}
+.tabs::-webkit-scrollbar{ display:none; }
+.tab{
+  flex:0 0 auto; border:1px solid var(--line); background:var(--card);
+  color:var(--mut); font-size:.78rem; font-weight:700; letter-spacing:.2px;
+  padding:8px 14px; border-radius:999px; cursor:pointer; white-space:nowrap;
+  transition:all .18s ease;
+}
+.tab:active{ transform:scale(.95); }
+.tab.on{
+  background:linear-gradient(92deg,var(--acc),var(--acc2));
+  border-color:transparent; color:#04121f;
+}
+[data-theme="light"] .tab.on{ color:#fff; }
+
+/* ================= LETTER INDEX ================= */
+.letters{
+  display:flex; gap:4px; margin-top:8px; overflow-x:auto; scrollbar-width:none;
+  padding-bottom:2px;
+}
+.letters::-webkit-scrollbar{ display:none; }
+.lt{
+  flex:0 0 auto; min-width:26px; height:26px; border-radius:8px;
+  border:1px solid transparent; background:transparent; color:var(--mut);
+  font-size:.72rem; font-weight:800; cursor:pointer;
+}
+.lt:active{ transform:scale(.9); }
+.lt.on{ background:var(--card2); border-color:var(--acc); color:var(--acc); }
+
+/* ================= LIST ================= */
+.wrap{ max-width:920px; margin:0 auto; padding:12px 12px 8px; }
+.meta{
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:.74rem; color:var(--mut); font-weight:600; padding:4px 4px 10px;
+}
+.dot{ width:6px; height:6px; border-radius:50%; background:var(--ok); display:inline-block; margin-right:6px; }
+
+.vcard{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:12px 14px; margin-bottom:10px; box-shadow:var(--shadow);
+  transition:transform .12s ease,border-color .2s ease;
+  animation:pop .28s ease both;
+}
+@keyframes pop{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+.vcard:active{ transform:scale(.988); }
+
+.vhead{ display:flex; align-items:center; gap:8px; margin-bottom:9px; }
+.vnum{
+  font-size:.66rem; font-weight:800; color:var(--mut);
+  background:var(--card2); border:1px solid var(--line);
+  border-radius:7px; padding:2px 6px; flex:0 0 auto;
+}
+.v1{
+  font-size:1.06rem; font-weight:800; margin:0; letter-spacing:-.2px;
+  color:var(--txt); flex:1; min-width:0;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.badge{
+  font-size:.6rem; font-weight:800; letter-spacing:.5px; text-transform:uppercase;
+  padding:3px 7px; border-radius:6px; flex:0 0 auto;
+}
+.badge.irr{ background:rgba(251,191,36,.14); color:var(--warn); border:1px solid rgba(251,191,36,.3); }
+.badge.reg{ background:rgba(52,211,153,.12); color:var(--ok); border:1px solid rgba(52,211,153,.28); }
+
+.vgrid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; }
+.vcell{ background:var(--card2); border-radius:10px; padding:7px 9px; min-width:0; }
+.vlbl{
+  display:block; font-size:.58rem; font-weight:800; letter-spacing:.45px;
+  text-transform:uppercase; color:var(--mut); margin-bottom:3px;
+}
+.vval{
+  display:block; font-size:.86rem; font-weight:700; color:var(--acc);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.vmean{
+  margin-top:9px; font-size:.9rem; font-weight:600; color:var(--txt);
+  padding-top:9px; border-top:1px dashed var(--line);
+  font-family:"Noto Sans Bengali",system-ui,sans-serif;
+}
+
+#loadMore{
+  width:100%; padding:13px; border-radius:14px; margin:6px 0 10px;
+  border:1px dashed var(--line); background:var(--card); color:var(--acc);
+  font-weight:800; font-size:.85rem; cursor:pointer; letter-spacing:.3px;
+}
+#loadMore:active{ transform:scale(.985); }
+.hidden{ display:none !important; }
+
+/* ================= EMPTY ================= */
+.empty{ text-align:center; padding:60px 20px; color:var(--mut); }
+.empty .em{ font-size:2.6rem; display:block; margin-bottom:10px; opacity:.7; }
+
+/* ================= FOOTER CREDIT ================= */
+.credit{
+  text-align:center; padding:20px 12px 12px; margin-bottom:8px;
+  font-size:.72rem; font-weight:700; letter-spacing:.4px; color:var(--mut);
+}
+.credit .name{
+  background:linear-gradient(92deg,var(--acc),var(--acc2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-weight:900;
+}
+
+/* ================= FAB + BOTTOM NAV ================= */
+.bottomnav{
+  position:fixed; left:0; right:0; bottom:0; z-index:70;
+  display:grid; grid-template-columns:repeat(4,1fr);
+  background:var(--bar);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);
+  backdrop-filter:saturate(180%) blur(16px);
+  border-top:1px solid var(--line);
+  padding:6px 6px calc(6px + env(safe-area-inset-bottom));
+}
+.navbtn{
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  border:0; background:transparent; color:var(--mut);
+  font-size:.6rem; font-weight:800; letter-spacing:.4px; text-transform:uppercase;
+  padding:8px 2px; border-radius:12px; cursor:pointer;
+  transition:color .18s ease,background .18s ease,transform .12s ease;
+}
+.navbtn i{ font-style:normal; font-size:1.15rem; line-height:1; }
+.navbtn:active{ transform:scale(.9); }
+.navbtn.on{ color:var(--acc); background:rgba(56,189,248,.08); }
+
+/* ================= TOAST ================= */
+#toast{
+  position:fixed; left:50%; bottom:calc(96px + env(safe-area-inset-bottom));
+  transform:translate(-50%,20px); z-index:90;
+  background:var(--card2); color:var(--txt); border:1px solid var(--acc);
+  padding:10px 16px; border-radius:12px; font-size:.8rem; font-weight:700;
+  opacity:0; pointer-events:none; transition:all .3s cubic-bezier(.2,.9,.3,1);
+  max-width:88vw; text-align:center; box-shadow:var(--shadow);
+}
+#toast.show{ opacity:1; transform:translate(-50%,0); }
+
+/* ================= PRINT AREA ================= */
+#printArea{ display:none; }
+
+/* ================= PRINT STYLES ================= */
+@media print{
+  @page{ size:A4; margin:14mm 10mm; }
+  html,body{
+    background:#fff !important; color:#000 !important;
+    padding:0 !important; margin:0 !important;
+  }
+  #watermark,
+  .appbar,.bottomnav,#toast,.wrap,#loadMore,.credit{ display:none !important; }
+  #printArea{ display:block !important; position:relative; }
+
+  /* Watermark that repeats on every printed page */
+  #printArea .print-wm{
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%) rotate(-35deg);
+    font-size:46pt;
+    font-weight:900;
+    letter-spacing:4px;
+    color:#000;
+    opacity:.06;
+    white-space:nowrap;
+    pointer-events:none;
+    z-index:0;
+    text-transform:uppercase;
+    font-family:system-ui,"Segoe UI",Roboto,sans-serif;
+  }
+
+  #printArea h1{
+    font-size:16pt; margin:0 0 1.5mm; font-weight:800; color:#000;
+    position:relative; z-index:1;
+  }
+  #printArea .sub{
+    font-size:8.5pt; color:#333; margin-bottom:4mm;
+    border-bottom:1px solid #999; padding-bottom:2mm;
+    position:relative; z-index:1;
+  }
+  #printArea .sub b{ color:#000; }
+  #printArea table{
+    width:100%; border-collapse:collapse; font-size:8.6pt;
+    font-family:system-ui,"Noto Sans Bengali",sans-serif;
+    position:relative; z-index:1;
+  }
+  #printArea thead{ display:table-header-group; }
+  #printArea th{
+    background:#e9eef6 !important; color:#000; font-weight:800;
+    border:1px solid #888; padding:3px 5px; text-align:left;
+    font-size:8.2pt; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  #printArea td{
+    border:1px solid #aaa; padding:2.6px 5px; vertical-align:top;
+    background:#fff;
+  }
+  #printArea tr{ page-break-inside:avoid; break-inside:avoid; }
+  #printArea tbody tr:nth-child(even) td{ background:#f6f8fb !important; }
+  #printArea .bn{ font-family:"Noto Sans Bengali",system-ui,sans-serif; }
+  #printArea .print-credit{
+    text-align:center; margin-top:6mm; font-size:7.5pt; color:#555;
+    position:relative; z-index:1;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= WATERMARK (SCREEN) ================= -->
+<div id="watermark" aria-hidden="true">Muzahid The Tech Master</div>
+
+<!-- ================= APP BAR ================= -->
+<header class="appbar">
+  <div class="bar-row">
+    <div class="brand">
+      <span class="ico">📘</span>
+      <span>Verb Vault
+        <small id="totalLabel">loading…</small>
+      </span>
+    </div>
+    <button class="iconbtn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+    <button class="iconbtn" id="topPrint" aria-label="Print or save PDF">⬇</button>
+  </div>
+
+  <div class="searchwrap">
+    <span class="mag">🔍</span>
+    <input id="q" type="search" autocomplete="off" spellcheck="false"
+           placeholder="Search verb, past form or অসমীয়া অৰ্থ…">
+    <button id="clearBtn" aria-label="Clear">✕</button>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-tab="all">All Verbs</button>
+    <button class="tab" data-tab="irr">Irregular</button>
+    <button class="tab" data-tab="reg">Regular</button>
+    <button class="tab" data-tab="state">Stative</button>
+  </div>
+
+  <div class="letters" id="letters"></div>
+</header>
+
+<!-- ================= MAIN LIST ================= -->
+<main class="wrap">
+  <div class="meta">
+    <span><span class="dot"></span><span id="resultCount">0 verbs</span></span>
+    <span id="activeHint">A – Z</span>
+  </div>
+  <div id="list"></div>
+  <button id="loadMore" class="hidden">Load more ▾</button>
+  <div id="empty" class="empty hidden">
+    <span class="em">🔎</span>
+    No verb found. Try another spelling.
+  </div>
+
+  <div class="credit">
+    Crafted by <span class="name">Muzahid The Tech Master</span>
+  </div>
+</main>
+
+<!-- ================= BOTTOM NAV ================= -->
+<nav class="bottomnav">
+  <button class="navbtn on" data-nav="verbs"><i>📚</i>Verbs</button>
+  <button class="navbtn" data-nav="search"><i>🔍</i>Search</button>
+  <button class="navbtn" data-nav="pdf"><i>📄</i>PDF</button>
+  <button class="navbtn" data-nav="top"><i>⬆</i>Top</button>
+</nav>
+
+<div id="toast"></div>
+<div id="printArea"></div>
+
+<script>
+/* =====================================================================
+   VERB VAULT  ·  DATA  ·  Muzahid The Tech Master
+   Format:  V1 | V2 | V3 | Assamese meaning
+   The s / es / ies form is generated automatically (with overrides).
+   ===================================================================== */
+
+/* ---------- CORE LIST ---------- */
+const RAW_CORE = `
+abide|abode|abode|মানি চলা
+accept|accepted|accepted|স্বীকাৰ কৰা
+achieve|achieved|achieved|অৰ্জন কৰা
+act|acted|acted|কাম কৰা
+add|added|added|যোগ কৰা
+admire|admired|admired|প্ৰশংসা কৰা
+admit|admitted|admitted|স্বীকাৰ কৰা
+advise|advised|advised|উপদেশ দিয়া
+afford|afforded|afforded|সামৰ্থ্য কৰা
+agree|agreed|agreed|সহমত হোৱা
+allow|allowed|allowed|অনুমতি দিয়া
+am/is/are|was/were|been|হোৱা
+answer|answered|answered|উত্তৰ দিয়া
+appear|appeared|appeared|দেখা দিয়া
+apply|applied|applied|আবেদন কৰা
+argue|argued|argued|বিতৰ্ক কৰা
+arise|arose|arisen|উঠা
+arrive|arrived|arrived|পৌঁছা
+ask|asked|asked|সোধা
+avoid|avoided|avoided|এৰাই চলা
+awake|awoke|awoken|জাগা
+bake|baked|baked|বেক কৰা
+balance|balanced|balanced|ভাৰসাম্য ৰখা
+bear|bore|born|সহ্য কৰা
+beat|beat|beaten|পিটা
+become|became|become|হোৱা
+beg|begged|begged|ভিক্ষা কৰা
+begin|began|begun|আৰম্ভ কৰা
+believe|believed|believed|বিশ্বাস কৰা
+belong|belonged|belonged|অধীন হোৱা
+bend|bent|bent|নত কৰা
+bet|bet|bet|বাজি ধৰা
+bid|bade|bidden|দাম লগোৱা
+bind|bound|bound|বান্ধা
+bite|bit|bitten|কামোৰা
+bleed|bled|bled|ৰক্তক্ষৰণ হোৱা
+bless|blessed|blessed|আশীৰ্বাদ দিয়া
+blow|blew|blown|উৰা
+boil|boiled|boiled|উতলোৱা
+borrow|borrowed|borrowed|ধাৰ লোৱা
+break|broke|broken|ভঙা
+breed|bred|bred|প্ৰজনন কৰা
+bring|brought|brought|অনা
+build|built|built|নিৰ্মাণ কৰা
+burn|burnt|burnt|পোৰা
+buy|bought|bought|কিনা
+call|called|called|মতা
+can|could|—|পাৰা
+care|cared|cared|যত্ন কৰা
+carry|carried|carried|বহন কৰা
+catch|caught|caught|ধৰা
+change|changed|changed|সলনি কৰা
+check|checked|checked|পৰীক্ষা কৰা
+choose|chose|chosen|বাছনি কৰা
+clap|clapped|clapped|তালি মৰা
+clean|cleaned|cleaned|পৰিষ্কাৰ কৰা
+climb|climbed|climbed|আৰোহণ কৰা
+cling|clung|clung|লাগি ধৰা
+close|closed|closed|বন্ধ কৰা
+collect|collected|collected|সংগ্ৰহ কৰা
+come|came|come|অহা
+cook|cooked|cooked|ৰন্ধা
+copy|copied|copied|প্ৰতিলিপি কৰা
+cost|cost|cost|মূল্য হোৱা
+count|counted|counted|গণনা কৰা
+cut|cut|cut|কটা
+dance|danced|danced|নাচা
+deal|dealt|dealt|ব্যৱহাৰ কৰা
+decide|decided|decided|সিদ্ধান্ত লোৱা
+deliver|delivered|delivered|প্ৰদান কৰা
+depend|depended|depended|নিৰ্ভৰ কৰা
+describe|described|described|বৰ্ণনা কৰা
+design|designed|designed|ডিজাইন কৰা
+destroy|destroyed|destroyed|ধ্বংস কৰা
+develop|developed|developed|বিকশিত কৰা
+die|died|died|মৰা
+dig|dug|dug|খন্দা
+do|did|done|কৰা
+draw|drew|drawn|আঁকা
+dream|dreamt|dreamt|সপোন দেখা
+drink|drank|drunk|পান কৰা
+drive|drove|driven|চালনা কৰা
+eat|ate|eaten|খোৱা
+encourage|encouraged|encouraged|উৎসাহিত কৰা
+enjoy|enjoyed|enjoyed|আনন্দ লোৱা
+explain|explained|explained|ব্যাখ্যা কৰা
+fall|fell|fallen|পৰা
+feed|fed|fed|খুওৱা
+feel|felt|felt|অনুভৱ কৰা
+fight|fought|fought|যুঁজ কৰা
+find|found|found|বিচাৰি পোৱা
+finish|finished|finished|সমাপ্ত কৰা
+fit|fit|fit|খাপ খোৱা
+flee|fled|fled|পলায়ন কৰা
+fly|flew|flown|উৰা
+follow|followed|followed|অনুসৰণ কৰা
+forget|forgot|forgotten|পাহৰা
+forgive|forgave|forgiven|ক্ষমা কৰা
+freeze|froze|frozen|জমা
+get|got|got|পোৱা
+give|gave|given|দিয়া
+go|went|gone|যোৱা
+grind|ground|ground|গুৰি কৰা
+grow|grew|grown|বাঢ়া
+guess|guessed|guessed|অনুমান কৰা
+hang|hung|hung|ওলমা
+happen|happened|happened|ঘটা
+hate|hated|hated|ঘৃণা কৰা
+have|had|had|থকা
+hear|heard|heard|শুনা
+help|helped|helped|সহায় কৰা
+hide|hid|hidden|লুকুওৱা
+hit|hit|hit|আঘাত কৰা
+hold|held|held|ধৰা
+hope|hoped|hoped|আশা কৰা
+hurt|hurt|hurt|আঘাত কৰা
+identify|identified|identified|চিনাক্ত কৰা
+imagine|imagined|imagined|কল্পনা কৰা
+improve|improved|improved|উন্নতি কৰা
+include|included|included|অন্তৰ্ভুক্ত কৰা
+increase|increased|increased|বঢ়োৱা
+influence|influenced|influenced|প্ৰভাৱিত কৰা
+inform|informed|informed|জান দিয়া
+intend|intended|intended|উদ্দেশ্য কৰা
+introduce|introduced|introduced|পৰিচয় কৰোৱা
+invent|invented|invented|আৱিষ্কাৰ কৰা
+invite|invited|invited|আমন্ত্ৰণ কৰা
+join|joined|joined|যোগ দিয়া
+jump|jumped|jumped|জপিওৱা
+keep|kept|kept|ৰখা
+kill|killed|killed|হত্যা কৰা
+kneel|knelt|knelt|আঁঠু লোৱা
+know|knew|known|জানা
+laugh|laughed|laughed|হাঁহা
+lead|led|led|নেতৃত্ব দিয়া
+leap|leapt|leapt|জাঁপ মাৰা
+learn|learnt|learnt|শিকা
+leave|left|left|এৰি যোৱা
+lend|lent|lent|ধাৰ দিয়া
+let|let|let|দিয়া
+lie|lay|lain|শোৱা
+light|lit|lit|পোহৰ কৰা
+like|liked|liked|পছন্দ কৰা
+listen|listened|listened|শুনা
+live|lived|lived|বাস কৰা
+look|looked|looked|চোৱা
+lose|lost|lost|হেৰুওৱা
+love|loved|loved|ভাল পোৱা
+make|made|made|বনোৱা
+manage|managed|managed|পৰিচালনা কৰা
+marry|married|married|বিবাহ কৰা
+may|might|—|পাৰে
+mean|meant|meant|অৰ্থ হোৱা
+meet|met|met|লগ পোৱা
+miss|missed|missed|হেৰুওৱা
+move|moved|moved|গতি কৰা
+must|—|—|অবশ্যে
+need|needed|needed|প্ৰয়োজন হোৱা
+open|opened|opened|খোলা
+order|ordered|ordered|আদেশ দিয়া
+organize|organized|organized|সংগঠিত কৰা
+pay|paid|paid|পৰিশোধ কৰা
+play|played|played|খেলা
+prefer|preferred|preferred|পছন্দ কৰা
+prepare|prepared|prepared|প্ৰস্তুত কৰা
+present|presented|presented|উপস্থাপন কৰা
+prevent|prevented|prevented|প্ৰতিৰোধ কৰা
+produce|produced|produced|উৎপাদন কৰা
+promise|promised|promised|প্ৰতিশ্ৰুতি দিয়া
+protect|protected|protected|সুৰক্ষা কৰা
+prove|proved|proven|প্ৰমাণ কৰা
+put|put|put|ৰখা
+reach|reached|reached|পৌঁছা
+read|read|read|পঢ়া
+receive|received|received|গ্ৰহণ কৰা
+recognize|recognized|recognized|চিনাক্ত কৰা
+record|recorded|recorded|ৰেকৰ্ড কৰা
+reduce|reduced|reduced|হ্ৰাস কৰা
+refuse|refused|refused|অস্বীকাৰ কৰা
+relax|relaxed|relaxed|আৰাম কৰা
+remember|remembered|remembered|মনত ৰখা
+remove|removed|removed|আঁতৰোৱা
+repair|repaired|repaired|মেৰামতি কৰা
+repeat|repeated|repeated|পুনৰাবৃত্তি কৰা
+replace|replaced|replaced|প্ৰতিস্থাপন কৰা
+reply|replied|replied|উত্তৰ দিয়া
+report|reported|reported|ৰিপৰ্ট দিয়া
+rest|rested|rested|বিশ্ৰাম কৰা
+return|returned|returned|উভতি অহা
+ride|rode|ridden|চৱাৰ কৰা
+ring|rang|rung|বজোৱা
+rise|rose|risen|উঠা
+run|ran|run|দৌৰা
+save|saved|saved|ৰক্ষা কৰা
+say|said|said|কোৱা
+see|saw|seen|দেখা
+seek|sought|sought|বিচাৰা
+sell|sold|sold|বিক্ৰী কৰা
+send|sent|sent|পঠোৱা
+set|set|set|স্থাপন কৰা
+shake|shook|shaken|জোকাৰি দিয়া
+shall|should|—|হ'ব
+shine|shone|shone|জিলিকা
+shoot|shot|shot|গুলীয়াই মৰা
+show|showed|shown|দেখুওৱা
+shut|shut|shut|বন্ধ কৰা
+sing|sang|sung|গোৱা
+sink|sank|sunk|ডুবা
+sit|sat|sat|বহা
+sleep|slept|slept|শোৱা
+slide|slid|slid|পিছলোৱা
+smell|smelt|smelt|গোন্ধ লোৱা
+speak|spoke|spoken|কোৱা
+spend|spent|spent|খৰচ কৰা
+spin|spun|spun|ঘূৰ্ণন কৰা
+spit|spat|spat|থু কৰা
+spread|spread|spread|বিয়পা
+stand|stood|stood|থিয় হোৱা
+start|started|started|আৰম্ভ কৰা
+stay|stayed|stayed|থকা
+steal|stole|stolen|চুৰি কৰা
+stick|stuck|stuck|লাগি থকা
+sting|stung|stung|হুলিয়োৱা
+stop|stopped|stopped|বন্ধ কৰা
+strike|struck|struck|আঘাত কৰা
+study|studied|studied|অধ্যয়ন কৰা
+succeed|succeeded|succeeded|সফল হোৱা
+suffer|suffered|suffered|ভুগা
+suggest|suggested|suggested|প্ৰস্তাৱ দিয়া
+swear|swore|sworn|শপত খোৱা
+sweep|swept|swept|পৰিষ্কাৰ কৰা
+swim|swam|swum|সাঁতোৰা
+swing|swung|swung|দোলা
+take|took|taken|লোৱা
+talk|talked|talked|কথা পতা
+teach|taught|taught|শিকোৱা
+tear|tore|torn|ছিৰা
+tell|told|told|কোৱা
+think|thought|thought|ভাবা
+throw|threw|thrown|দলিওৱা
+thrust|thrust|thrust|ঠেলি দিয়া
+touch|touched|touched|স্পৰ্শ কৰা
+travel|travelled|travelled|ভ্ৰমণ কৰা
+try|tried|tried|চেষ্টা কৰা
+turn|turned|turned|ঘূৰা
+understand|understood|understood|বুজা
+upset|upset|upset|বিচলিত কৰা
+use|used|used|ব্যৱহাৰ কৰা
+visit|visited|visited|পৰিদৰ্শন কৰা
+wait|waited|waited|অপেক্ষা কৰা
+wake|woke|woken|জাগা
+walk|walked|walked|খোজ কঢ়া
+want|wanted|wanted|বিচৰা
+watch|watched|watched|চোৱা
+wear|wore|worn|পিন্ধা
+weave|wove|woven|বোৱা
+weep|wept|wept|কান্দা
+will|would|—|হ'ব
+win|won|won|জিকা
+wind|wound|wound|মেৰিওৱা
+wish|wished|wished|ইচ্ছা কৰা
+withstand|withstood|withstood|সহ্য কৰা
+work|worked|worked|কাম কৰা
+worry|worried|worried|চিন্তা কৰা
+wring|wrung|wrung|মেৰিওৱা
+write|wrote|written|লিখা
+`;
+
+/* ---------- EXTRA LIST ---------- */
+const RAW_EXTRA = `
+abandon|abandoned|abandoned|ত্যাগ কৰা
+abolish|abolished|abolished|বিলোপ কৰা
+absorb|absorbed|absorbed|শোষণ কৰা
+accelerate|accelerated|accelerated|ত্বৰান্বিত কৰা
+accompany|accompanied|accompanied|সংগ দিয়া
+accomplish|accomplished|accomplished|সম্পন্ন কৰা
+accumulate|accumulated|accumulated|সঞ্চয় কৰা
+accuse|accused|accused|অভিযোগ কৰা
+acknowledge|acknowledged|acknowledged|স্বীকাৰ কৰা
+acquire|acquired|acquired|অৰ্জন কৰা
+adapt|adapted|adapted|খাপ খুওৱা
+adjust|adjusted|adjusted|সমন্বয় কৰা
+administer|administered|administered|প্ৰশাসন কৰা
+adopt|adopted|adopted|গ্ৰহণ কৰা
+adore|adored|adored|পূজা কৰা
+advertise|advertised|advertised|বিজ্ঞাপন দিয়া
+advocate|advocated|advocated|সমৰ্থন কৰা
+affirm|affirmed|affirmed|নিশ্চিত কৰা
+aggravate|aggravated|aggravated|বেয়া কৰা
+agitate|agitated|agitated|উত্তেজিত কৰা
+allege|alleged|alleged|অভিযোগ কৰা
+allocate|allocated|allocated|আবণ্টন কৰা
+alter|altered|altered|সলনি কৰা
+amaze|amazed|amazed|আচৰিত কৰা
+amend|amended|amended|সংশোধন কৰা
+amplify|amplified|amplified|বঢ়াই কোৱা
+amuse|amused|amused|মনোৰঞ্জন কৰা
+analyse|analysed|analysed|বিশ্লেষণ কৰা
+announce|announced|announced|ঘোষণা কৰা
+annoy|annoyed|annoyed|বিৰক্ত কৰা
+anticipate|anticipated|anticipated|আগতীয়াকৈ ভাবা
+apologize|apologized|apologized|ক্ষমা খোজা
+applaud|applauded|applauded|তালি দিয়া
+appoint|appointed|appointed|নিয়োগ কৰা
+appreciate|appreciated|appreciated|মূল্য দিয়া
+approve|approved|approved|অনুমোদন কৰা
+arrange|arranged|arranged|ব্যৱস্থা কৰা
+arrest|arrested|arrested|গ্ৰেপ্তাৰ কৰা
+articulate|articulated|articulated|স্পষ্টকৈ কোৱা
+ascend|ascended|ascended|উঠা
+aspire|aspired|aspired|উচ্চাকাংক্ষা কৰা
+assemble|assembled|assembled|একত্ৰিত কৰা
+assert|asserted|asserted|দৃঢ়তাৰে কোৱা
+assess|assessed|assessed|মূল্যাংকন কৰা
+assign|assigned|assigned|নিযুক্তি দিয়া
+assist|assisted|assisted|সহায় কৰা
+associate|associated|associated|সংযুক্ত কৰা
+assume|assumed|assumed|ধৰি লোৱা
+assure|assured|assured|আশ্বাস দিয়া
+astonish|astonished|astonished|আচৰিত কৰা
+attach|attached|attached|সংলগ্ন কৰা
+attain|attained|attained|লাভ কৰা
+attempt|attempted|attempted|চেষ্টা কৰা
+attend|attended|attended|উপস্থিত থকা
+attract|attracted|attracted|আকৰ্ষণ কৰা
+attribute|attributed|attributed|কাৰণ দিয়া
+authorize|authorized|authorized|অনুমোদন দিয়া
+await|awaited|awaited|অপেক্ষা কৰা
+awaken|awakened|awakened|জগাই তোলা
+award|awarded|awarded|পুৰস্কাৰ দিয়া
+bargain|bargained|bargained|দৰদাম কৰা
+bathe|bathed|bathed|গা ধোৱা
+behave|behaved|behaved|ব্যৱহাৰ কৰা
+betray|betrayed|betrayed|বিশ্বাসঘাতকতা কৰা
+bewilder|bewildered|bewildered|বিভ্ৰান্ত কৰা
+blame|blamed|blamed|দোষাৰোপ কৰা
+blast|blasted|blasted|বিস্ফোৰণ কৰা
+blend|blended|blended|মিহলোৱা
+block|blocked|blocked|অৱৰোধ কৰা
+blossom|blossomed|blossomed|ফুলা
+blunder|blundered|blundered|ভুল কৰা
+boast|boasted|boasted|গৌৰৱ কৰা
+bombard|bombarded|bombarded|বোমাবৰ্ষণ কৰা
+bond|bonded|bonded|বান্ধোন দিয়া
+boost|boosted|boosted|বৃদ্ধি কৰা
+border|bordered|bordered|সীমা নিৰ্ধাৰণ কৰা
+bore|bored|bored|আমনি লগোৱা
+bounce|bounced|bounced|জঁপিয়াই উঠা
+bound|bounded|bounded|সীমাবদ্ধ কৰা
+bow|bowed|bowed|প্ৰণাম কৰা
+brace|braced|braced|সাজু কৰা
+brag|bragged|bragged|বঢ়াই কোৱা
+brake|braked|braked|ব্ৰেক মৰা
+breach|breached|breached|উলংঘা কৰা
+breathe|breathed|breathed|উশাহ লোৱা
+bribe|bribed|bribed|ঘুষ দিয়া
+brighten|brightened|brightened|উজ্জ্বল কৰা
+broadcast|broadcast|broadcast|প্ৰচাৰ কৰা
+bruise|bruised|bruised|আঘাত কৰা
+brush|brushed|brushed|ব্ৰাছ কৰা
+bubble|bubbled|bubbled|বুৰবুৰণি তোলা
+budget|budgeted|budgeted|বাজেট কৰা
+bump|bumped|bumped|খুন্দা মৰা
+burnish|burnished|burnished|চক্চকীয়া কৰা
+burst|burst|burst|ফাটি যোৱা
+bury|buried|buried|কবৰ দিয়া
+bustle|bustled|bustled|ব্যস্ত হোৱা
+calculate|calculated|calculated|গণনা কৰা
+calm|calmed|calmed|শান্ত কৰা
+cancel|cancelled|cancelled|বাতিল কৰা
+capture|captured|captured|বন্দী কৰা
+caution|cautioned|cautioned|সতৰ্ক কৰা
+cease|ceased|ceased|বন্ধ কৰা
+celebrate|celebrated|celebrated|উদযাপন কৰা
+cement|cemented|cemented|মজবুত কৰা
+challenge|challenged|challenged|প্ৰত্যাহ্বান জনোৱা
+chant|chanted|chanted|জপ কৰা
+characterise|characterised|characterised|বৈশিষ্ট্য বৰ্ণনা কৰা
+charge|charged|charged|অভিযোগ কৰা
+chase|chased|chased|খেদি যোৱা
+chat|chatted|chatted|কথা পতা
+cherish|cherished|cherished|লালন কৰা
+chew|chewed|chewed|চোবোৱা
+chill|chilled|chilled|ঠাণ্ডা কৰা
+chop|chopped|chopped|কাটি টুকুৰা কৰা
+circulate|circulated|circulated|প্ৰচলন কৰা
+cite|cited|cited|উদ্ধৃতি দিয়া
+claim|claimed|claimed|দাবী কৰা
+clarify|clarified|clarified|স্পষ্ট কৰা
+classify|classified|classified|শ্ৰেণীবিভাগ কৰা
+cleanse|cleansed|cleansed|পৰিষ্কাৰ কৰা
+clear|cleared|cleared|পৰিষ্কাৰ কৰা
+clench|clenched|clenched|মুঠি মাৰি ধৰা
+clip|clipped|clipped|কাটি চুটি কৰা
+clone|cloned|cloned|ক্লোন কৰা
+clutch|clutched|clutched|শক্তকৈ ধৰা
+coach|coached|coached|প্ৰশিক্ষণ দিয়া
+coil|coiled|coiled|মেৰিওৱা
+collaborate|collaborated|collaborated|সহযোগিতা কৰা
+collapse|collapsed|collapsed|ভাঙি পৰা
+combine|combined|combined|একত্ৰিত কৰা
+comfort|comforted|comforted|সান্ত্বনা দিয়া
+command|commanded|commanded|আদেশ দিয়া
+commemorate|commemorated|commemorated|স্মৰণ কৰা
+commence|commenced|commenced|আৰম্ভ কৰা
+comment|commented|commented|মন্তব্য কৰা
+commit|committed|committed|উৎসৰ্গা কৰা
+communicate|communicated|communicated|যোগাযোগ কৰা
+compare|compared|compared|তুলনা কৰা
+compel|compelled|compelled|বাধ্য কৰা
+compensate|compensated|compensated|ক্ষতিপূৰণ দিয়া
+compete|competed|competed|প্ৰতিযোগিতা কৰা
+compile|compiled|compiled|সংকলন কৰা
+complain|complained|complained|অভিযোগ কৰা
+complete|completed|completed|সম্পূৰ্ণ কৰা
+comply|complied|complied|পালন কৰা
+compose|composed|composed|ৰচনা কৰা
+comprehend|comprehended|comprehended|বুজা
+compress|compressed|compressed|চেপি সৰু কৰা
+comprise|comprised|comprised|গঠন কৰা
+compromise|compromised|compromised|আপোচ কৰা
+conceal|concealed|concealed|লুকুওৱা
+conceive|conceived|conceived|কল্পনা কৰা
+concentrate|concentrated|concentrated|মনোযোগ দিয়া
+concern|concerned|concerned|চিন্তা কৰা
+conclude|concluded|concluded|শেষ কৰা
+condemn|condemned|condemned|নিন্দা কৰা
+conduct|conducted|conducted|পৰিচালনা কৰা
+confer|conferred|conferred|পৰামৰ্শ কৰা
+confess|confessed|confessed|স্বীকাৰ কৰা
+confide|confided|confided|বিশ্বাস কৰি কোৱা
+confine|confined|confined|সীমাবদ্ধ কৰা
+confirm|confirmed|confirmed|নিশ্চিত কৰা
+conflict|conflicted|conflicted|সংঘৰ্ষ কৰা
+confront|confronted|confronted|সন্মুখীন হোৱা
+confuse|confused|confused|বিভ্ৰান্ত কৰা
+congratulate|congratulated|congratulated|অভিনন্দন জনোৱা
+conquer|conquered|conquered|জয় কৰা
+consent|consented|consented|সন্মতি দিয়া
+conserve|conserved|conserved|সংৰক্ষণ কৰা
+consider|considered|considered|বিবেচনা কৰা
+consist|consisted|consisted|গঠিত হোৱা
+console|consoled|consoled|সান্ত্বনা দিয়া
+conspire|conspired|conspired|ষড়যন্ত্ৰ কৰা
+constitute|constituted|constituted|গঠন কৰা
+constrain|constrained|constrained|বাধা দিয়া
+construct|constructed|constructed|নিৰ্মাণ কৰা
+consult|consulted|consulted|পৰামৰ্শ লোৱা
+consume|consumed|consumed|গ্ৰহণ কৰা
+contain|contained|contained|ধৰি ৰখা
+contemplate|contemplated|contemplated|চিন্তা কৰা
+contend|contended|contended|যুঁজ কৰা
+continue|continued|continued|অব্যাহত ৰখা
+contract|contracted|contracted|সংকুচিত কৰা
+contradict|contradicted|contradicted|বিৰোধিতা কৰা
+contribute|contributed|contributed|অৱদান দিয়া
+contrive|contrived|contrived|ষড়যন্ত্ৰ কৰা
+control|controlled|controlled|নিয়ন্ত্ৰণ কৰা
+convene|convened|convened|সভা আহ্বান কৰা
+convert|converted|converted|ৰূপান্তৰ কৰা
+convey|conveyed|conveyed|প্ৰেৰণ কৰা
+convict|convicted|convicted|দোষী সাব্যস্ত কৰা
+convince|convinced|convinced|বিশ্বাস কৰোৱা
+cooperate|cooperated|cooperated|সহযোগিতা কৰা
+coordinate|coordinated|coordinated|সমন্বয় কৰা
+cope|coped|coped|সন্মুখীন হোৱা
+correct|corrected|corrected|শুদ্ধ কৰা
+correspond|corresponded|corresponded|পত্ৰালাপ কৰা
+corrupt|corrupted|corrupted|দুৰ্নীতিত লিপ্ত কৰা
+cough|coughed|coughed|কাহ মৰা
+counsel|counselled|counselled|পৰামৰ্শ দিয়া
+cover|covered|covered|ঢাকি ৰখা
+crack|cracked|cracked|ফাট মেলা
+crash|crashed|crashed|খুন্দা মৰা
+crawl|crawled|crawled|হামাগুৰি দিয়া
+create|created|created|সৃষ্টি কৰা
+creep|crept|crept|লাহে লাহে গতি কৰা
+criticise|criticised|criticised|সমালোচনা কৰা
+crop|cropped|cropped|শস্য কটা
+cross|crossed|crossed|পাৰ হোৱা
+crouch|crouched|crouched|নত হৈ থকা
+crush|crushed|crushed|চেপি গুৰি কৰা
+cry|cried|cried|কান্দা
+cultivate|cultivated|cultivated|খেতি কৰা
+curb|curbed|curbed|নিয়ন্ত্ৰণ কৰা
+cure|cured|cured|নিৰাময় কৰা
+curl|curled|curled|কোঁচাই লোৱা
+damage|damaged|damaged|ক্ষতি কৰা
+dare|dared|dared|সাহস কৰা
+dart|darted|darted|দ্ৰুতগতিত যোৱা
+dash|dashed|dashed|ধুমুহাৰ দৰে যোৱা
+dazzle|dazzled|dazzled|আচৰিত কৰা
+debate|debated|debated|বিতৰ্ক কৰা
+decay|decayed|decayed|ক্ষয় হোৱা
+deceive|deceived|deceived|প্ৰতাৰণা কৰা
+declare|declared|declared|ঘোষণা কৰা
+decline|declined|declined|অস্বীকাৰ কৰা
+decorate|decorated|decorated|সজোৱা
+dedicate|dedicated|dedicated|উৎসৰ্গা কৰা
+deduce|deduced|deduced|অনুমান কৰা
+defeat|defeated|defeated|পৰাস্ত কৰা
+defend|defended|defended|ৰক্ষা কৰা
+define|defined|defined|সংজ্ঞা দিয়া
+defuse|defused|defused|শান্ত কৰা
+defy|defied|defied|অৱজ্ঞা কৰা
+delay|delayed|delayed|পলম কৰা
+delete|deleted|deleted|মচি পেলোৱা
+deliberate|deliberated|deliberated|চিন্তা কৰি সিদ্ধান্ত লোৱা
+delight|delighted|delighted|আনন্দিত কৰা
+demand|demanded|demanded|দাবী কৰা
+demonstrate|demonstrated|demonstrated|প্ৰদৰ্শন কৰা
+denote|denoted|denoted|সূচোৱা
+deny|denied|denied|অস্বীকাৰ কৰা
+depart|departed|departed|প্ৰস্থান কৰা
+depict|depicted|depicted|চিত্ৰিত কৰা
+deploy|deployed|deployed|মোতায়েন কৰা
+deposit|deposited|deposited|জমা কৰা
+deprive|deprived|deprived|বঞ্চিত কৰা
+derive|derived|derived|লাভ কৰা
+descend|descended|descended|নামি অহা
+deserve|deserved|deserved|যোগ্য হোৱা
+desire|desired|desired|ইচ্ছা কৰা
+despise|despised|despised|ঘৃণা কৰা
+detach|detached|detached|বিচ্ছিন্ন কৰা
+detect|detected|detected|ধৰা পেলোৱা
+determine|determined|determined|নিৰ্ধাৰণ কৰা
+deviate|deviated|deviated|বিচ্যুত হোৱা
+devise|devised|devised|উদ্ভাৱন কৰা
+devote|devoted|devoted|উৎসৰ্গা কৰা
+devour|devoured|devoured|গ্ৰাস কৰা
+diagnose|diagnosed|diagnosed|ৰোগ নিৰ্ণয় কৰা
+dictate|dictated|dictated|আদেশ দিয়া
+differ|differed|differed|পৃথক হোৱা
+differentiate|differentiated|differentiated|পাৰ্থক্য কৰা
+digest|digested|digested|হজম কৰা
+dignify|dignified|dignified|মৰ্যাদা দিয়া
+dilute|diluted|diluted|পাতল কৰা
+diminish|diminished|diminished|হ্ৰাস কৰা
+dip|dipped|dipped|ডুবা
+direct|directed|directed|পৰিচালনা কৰা
+disable|disabled|disabled|অক্ষম কৰা
+disagree|disagreed|disagreed|অসহমত হোৱা
+disappear|disappeared|disappeared|নোহোৱা হোৱা
+disappoint|disappointed|disappointed|নিৰাশ কৰা
+disapprove|disapproved|disapproved|অননুমোদন কৰা
+disarm|disarmed|disarmed|নিৰস্ত্ৰ কৰা
+discard|discarded|discarded|পেলাই দিয়া
+discern|discerned|discerned|বুজি পোৱা
+discharge|discharged|discharged|মুকলি কৰা
+discipline|disciplined|disciplined|শাসন কৰা
+disclose|disclosed|disclosed|প্ৰকাশ কৰা
+discourage|discouraged|discouraged|নিৰুৎসাহিত কৰা
+discover|discovered|discovered|আৱিষ্কাৰ কৰা
+discuss|discussed|discussed|আলোচনা কৰা
+disdain|disdained|disdained|ঘৃণা কৰা
+disgrace|disgraced|disgraced|অসম্মান কৰা
+disguise|disguised|disguised|ছদ্মবেশ ধৰা
+disgust|disgusted|disgusted|ঘৃণা জন্মোৱা
+dish|dished|dished|পৰিবেশন কৰা
+dismiss|dismissed|dismissed|বৰ্খাস্ত কৰা
+disobey|disobeyed|disobeyed|অমান্য কৰা
+display|displayed|displayed|প্ৰদৰ্শন কৰা
+dispose|disposed|disposed|নিষ্কাশন কৰা
+dispute|disputed|disputed|বিতৰ্ক কৰা
+disrupt|disrupted|disrupted|ব্যাহত কৰা
+dissolve|dissolved|dissolved|দ্ৰৱীভূত কৰা
+distinguish|distinguished|distinguished|পাৰ্থক্য কৰা
+distort|distorted|distorted|বিকৃত কৰা
+distract|distracted|distracted|মনোযোগ হৰণ কৰা
+distribute|distributed|distributed|বিতৰণ কৰা
+disturb|disturbed|disturbed|বিচলিত কৰা
+dive|dived|dived|ডুব দিয়া
+divert|diverted|diverted|ঘূৰাই পঠিওৱা
+divide|divided|divided|ভাগ কৰা
+divorce|divorced|divorced|বিবাহ বিচ্ছেদ কৰা
+dominate|dominated|dominated|আধিপত্য কৰা
+donate|donated|donated|দান কৰা
+doubt|doubted|doubted|সন্দেহ কৰা
+drag|dragged|dragged|টানি নিয়া
+drain|drained|drained|নিষ্কাশন কৰা
+dramatize|dramatized|dramatized|নাট্যৰূপ দিয়া
+drift|drifted|drifted|ভাহি যোৱা
+drill|drilled|drilled|খান্দা
+drip|dripped|dripped|টোপা টোপা পৰা
+drop|dropped|dropped|পেলাই দিয়া
+drown|drowned|drowned|বুৰি মৰা
+drug|drugged|drugged|ঔষধ দিয়া
+dry|dried|dried|শুকুওৱা
+dump|dumped|dumped|পেলোৱা
+duplicate|duplicated|duplicated|নকল কৰা
+dwell|dwelt|dwelt|বাস কৰা
+earn|earned|earned|উপাৰ্জন কৰা
+ease|eased|eased|সহজ কৰা
+echo|echoed|echoed|প্ৰতিধ্বনিত হোৱা
+edit|edited|edited|সম্পাদনা কৰা
+educate|educated|educated|শিক্ষিত কৰা
+effect|effected|effected|কাৰ্যকৰী কৰা
+elaborate|elaborated|elaborated|বিস্তাৰিত কৰা
+elect|elected|elected|নিৰ্বাচিত কৰা
+elevate|elevated|elevated|উন্নীত কৰা
+eliminate|eliminated|eliminated|দূৰ কৰা
+embrace|embraced|embraced|আলিঙ্গন কৰা
+emerge|emerged|emerged|ওলাই অহা
+emphasise|emphasised|emphasised|গুৰুত্ব দিয়া
+employ|employed|employed|নিয়োগ কৰা
+empty|emptied|emptied|খালী কৰা
+enable|enabled|enabled|সক্ষম কৰা
+enact|enacted|enacted|আইন প্ৰণয়ন কৰা
+encircle|encircled|encircled|বেৰি ধৰা
+enclose|enclosed|enclosed|সংলগ্ন কৰা
+encounter|encountered|encountered|সন্মুখীন হোৱা
+endanger|endangered|endangered|বিপদত পেলোৱা
+endorse|endorsed|endorsed|সমৰ্থন কৰা
+endure|endured|endured|সহ্য কৰা
+enforce|enforced|enforced|বলবৎ কৰা
+engage|engaged|engaged|নিয়োজিত কৰা
+enhance|enhanced|enhanced|বৃদ্ধি কৰা
+enlarge|enlarged|enlarged|ডাঙৰ কৰা
+enlighten|enlightened|enlightened|জ্ঞান দিয়া
+enlist|enlisted|enlisted|তালিকাভুক্ত কৰা
+enrich|enriched|enriched|সমৃদ্ধ কৰা
+enroll|enrolled|enrolled|নামভৰ্তি কৰা
+ensure|ensured|ensured|নিশ্চিত কৰা
+enter|entered|entered|প্ৰৱেশ কৰা
+entertain|entertained|entertained|মনোৰঞ্জন কৰা
+enthuse|enthused|enthused|উৎসাহিত কৰা
+entice|enticed|enticed|প্ৰলোভিত কৰা
+entitle|entitled|entitled|অধিকাৰ দিয়া
+enumerate|enumerated|enumerated|গণনা কৰা
+equip|equipped|equipped|সজ্জিত কৰা
+erase|erased|erased|মচি পেলোৱা
+erect|erected|erected|স্থাপন কৰা
+erode|eroded|eroded|ক্ষয় কৰা
+erupt|erupted|erupted|অগ্ন্যুৎপাত হোৱা
+escape|escaped|escaped|পলায়ন কৰা
+establish|established|established|প্ৰতিষ্ঠা কৰা
+esteem|esteemed|esteemed|সন্মান কৰা
+estimate|estimated|estimated|অনুমান কৰা
+evacuate|evacuated|evacuated|স্থানান্তৰ কৰা
+evaluate|evaluated|evaluated|মূল্যাংকন কৰা
+evaporate|evaporated|evaporated|বাষ্পীভূত হোৱা
+evade|evaded|evaded|এৰাই চলা
+evoke|evoked|evoked|স্মৰণ কৰোৱা
+evolve|evolved|evolved|বিকশিত হোৱা
+exaggerate|exaggerated|exaggerated|বঢ়াই কোৱা
+examine|examined|examined|পৰীক্ষা কৰা
+exceed|exceeded|exceeded|অতিক্ৰম কৰা
+excel|excelled|excelled|শ্ৰেষ্ঠ হোৱা
+exchange|exchanged|exchanged|বিনিময় কৰা
+excite|excited|excited|উত্তেজিত কৰা
+exclaim|exclaimed|exclaimed|আচৰিত হৈ কোৱা
+exclude|excluded|excluded|বাদ দিয়া
+excuse|excused|excused|ক্ষমা কৰা
+execute|executed|executed|কাৰ্যকৰী কৰা
+exert|exerted|exerted|প্ৰয়োগ কৰা
+exhale|exhaled|exhaled|উশাহ এৰা
+exhaust|exhausted|exhausted|ভাগৰুৱা কৰা
+exhibit|exhibited|exhibited|প্ৰদৰ্শন কৰা
+exile|exiled|exiled|নিৰ্বাসিত কৰা
+exist|existed|existed|অস্তিত্ব ৰখা
+expand|expanded|expanded|বিস্তাৰ কৰা
+expect|expected|expected|আশা কৰা
+experience|experienced|experienced|অভিজ্ঞতা লোৱা
+experiment|experimented|experimented|পৰীক্ষা কৰা
+expire|expired|expired|ম্যাদ উকলা
+explode|exploded|exploded|বিস্ফোৰণ হোৱা
+exploit|exploited|exploited|শোষণ কৰা
+explore|explored|explored|অন্বেষণ কৰা
+export|exported|exported|ৰপ্তানি কৰা
+expose|exposed|exposed|উদঙাই দিয়া
+express|expressed|expressed|প্ৰকাশ কৰা
+extend|extended|extended|সম্প্ৰসাৰিত কৰা
+exterminate|exterminated|exterminated|নিৰ্মূল কৰা
+extinguish|extinguished|extinguished|নুমুওৱা
+extract|extracted|extracted|উলিয়াই লোৱা
+fabricate|fabricated|fabricated|বনোৱা
+facilitate|facilitated|facilitated|সহজ কৰা
+fade|faded|faded|ম্লান হোৱা
+fail|failed|failed|ব্যৰ্থ হোৱা
+faint|fainted|fainted|মূৰ্চ্ছা যোৱা
+fascinate|fascinated|fascinated|মুগ্ধ কৰা
+fasten|fastened|fastened|বান্ধা
+favour|favoured|favoured|অনুগ্ৰহ কৰা
+fax|faxed|faxed|ফেক্স কৰা
+fear|feared|feared|ভয় কৰা
+feature|featured|featured|বৈশিষ্ট্য হোৱা
+fetch|fetched|fetched|আনিবলৈ যোৱা
+file|filed|filed|ফাইল কৰা
+fill|filled|filled|ভৰোৱা
+film|filmed|filmed|চলচ্চিত্ৰত ধৰা
+filter|filtered|filtered|ফিল্টাৰ কৰা
+finance|financed|financed|অৰ্থসংস্থান কৰা
+fire|fired|fired|গুলীয়াই মৰা
+fish|fished|fished|মাছ ধৰা
+fix|fixed|fixed|ঠিক কৰা
+flap|flapped|flapped|পাখি কোবোৱা
+flash|flashed|flashed|জিলিকা
+flatten|flattened|flattened|চেপেটা কৰা
+flavour|flavoured|flavoured|সোৱাদ দিয়া
+flip|flipped|flipped|ওলোটাই দিয়া
+float|floated|floated|ওপঙি থকা
+flood|flooded|flooded|বানপানী হোৱা
+flourish|flourished|flourished|উন্নতি কৰা
+flow|flowed|flowed|বৈ যোৱা
+flower|flowered|flowered|ফুলা
+fold|folded|folded|ভাঁজ কৰা
+forbid|forbade|forbidden|নিষেধ কৰা
+force|forced|forced|বাধ্য কৰা
+forecast|forecast|forecast|পূৰ্বানুমান কৰা
+foresee|foresaw|foreseen|আগতীয়াকৈ দেখা
+foretell|foretold|foretold|ভৱিষ্যদ্বাণী কৰা
+forfeit|forfeited|forfeited|হেৰুওৱা
+forge|forged|forged|জাল কৰা
+form|formed|formed|গঠন কৰা
+formulate|formulated|formulated|প্ৰণয়ন কৰা
+forsake|forsook|forsaken|ত্যাগ কৰা
+fortify|fortified|fortified|সবল কৰা
+forward|forwarded|forwarded|পঠিয়াই দিয়া
+foster|fostered|fostered|পোষকতা কৰা
+found|founded|founded|প্ৰতিষ্ঠা কৰা
+frame|framed|framed|ফ্ৰেম কৰা
+free|freed|freed|মুকলি কৰা
+frighten|frightened|frightened|ভয় খুওৱা
+fry|fried|fried|ভজা
+fulfil|fulfilled|fulfilled|পূৰণ কৰা
+function|functioned|functioned|কাম কৰা
+fund|funded|funded|ধন যোগান ধৰা
+furnish|furnished|furnished|যোগান ধৰা
+gain|gained|gained|লাভ কৰা
+gallop|galloped|galloped|ঘোঁৰাৰ দৰে দৌৰা
+gamble|gambled|gambled|জুৱা খেলা
+gasp|gasped|gasped|উশাহ লোৱা
+gather|gathered|gathered|একত্ৰিত কৰা
+gaze|gazed|gazed|একেথৰে চোৱা
+generate|generated|generated|উৎপন্ন কৰা
+gesture|gestured|gestured|ইংগিত কৰা
+glance|glanced|glanced|চকু পৰা
+glide|glided|glided|খহি যোৱা
+glimpse|glimpsed|glimpsed|আভাস পোৱা
+glow|glowed|glowed|জিলিকা
+govern|governed|governed|শাসন কৰা
+grab|grabbed|grabbed|খপিয়া ধৰা
+grace|graced|graced|সৌন্দৰ্য দিয়া
+graduate|graduated|graduated|স্নাতক হোৱা
+grant|granted|granted|প্ৰদান কৰা
+grasp|grasped|grasped|ধৰা
+grate|grated|grated|ঘঁহা
+grieve|grieved|grieved|শোক কৰা
+grin|grinned|grinned|দাঁত ওলাই হাঁহা
+grip|gripped|gripped|ধৰি ৰখা
+groan|groaned|groaned|কেঁকাই উঠা
+guarantee|guaranteed|guaranteed|নিশ্চয়তা দিয়া
+guard|guarded|guarded|ৰক্ষা কৰা
+guide|guided|guided|পথ দেখুওৱা
+halt|halted|halted|বন্ধ কৰা
+hammer|hammered|hammered|হাতুৰিৰে কোবোৱা
+hand|handed|handed|হাতত দিয়া
+handle|handled|handled|চম্ভালা
+harass|harassed|harassed|উৎপীড়ন কৰা
+harm|harmed|harmed|ক্ষতি কৰা
+harmonise|harmonised|harmonised|মিলোৱা
+harvest|harvested|harvested|শস্য চপোৱা
+hasten|hastened|hastened|খৰধৰ কৰা
+haul|hauled|hauled|টানি নিয়া
+heal|healed|healed|আৰোগ্য কৰা
+heap|heaped|heaped|দম কৰা
+heat|heated|heated|গৰম কৰা
+heave|heaved|heaved|দাঙি নিয়া
+highlight|highlighted|highlighted|গুৰুত্ব দিয়া
+hire|hired|hired|ভাড়ালৈ লোৱা
+hiss|hissed|hissed|ফোঁচফোঁচ শব্দ কৰা
+hoist|hoisted|hoisted|দাঙি তোলা
+hop|hopped|hopped|জঁপিয়াই যোৱা
+horrify|horrified|horrified|ভয় খুওৱা
+host|hosted|hosted|আতিথ্য কৰা
+hover|hovered|hovered|ওপঙি থকা
+howl|howled|howled|কৰ্কশ শব্দ কৰা
+hug|hugged|hugged|আলিঙ্গন কৰা
+hum|hummed|hummed|গুণগুণ কৰা
+hunt|hunted|hunted|চিকাৰ কৰা
+hurry|hurried|hurried|খৰধৰ কৰা
+hurl|hurled|hurled|জোৰেৰে নিক্ষেপ কৰা
+ignite|ignited|ignited|জ্বলোৱা
+ignore|ignored|ignored|আওকাণ কৰা
+illustrate|illustrated|illustrated|উদাহৰণ দিয়া
+imitate|imitated|imitated|অনুকৰণ কৰা
+immerse|immersed|immersed|ডুবোৱা
+immigrate|immigrated|immigrated|প্ৰব্ৰজন কৰা
+impact|impacted|impacted|প্ৰভাৱ পেলোৱা
+imply|implied|implied|সূচোৱা
+import|imported|imported|আমদানি কৰা
+impose|imposed|imposed|জাপি দিয়া
+impress|impressed|impressed|প্ৰভাৱিত কৰা
+improvise|improvised|improvised|তাৎক্ষণিকভাৱে কৰা
+incorporate|incorporated|incorporated|সংযোজন কৰা
+incur|incurred|incurred|ভৰিবলগীয়া হোৱা
+indicate|indicated|indicated|সূচোৱা
+induce|induced|induced|প্ৰেৰিত কৰা
+indulge|indulged|indulged|লিপ্ত হোৱা
+infect|infected|infected|সংক্ৰামিত কৰা
+infer|inferred|inferred|অনুমান কৰা
+inflate|inflated|inflated|ফুলোৱা
+inherit|inherited|inherited|উত্তৰাধিকাৰ পোৱা
+inhibit|inhibited|inhibited|বাধা দিয়া
+initiate|initiated|initiated|আৰম্ভ কৰা
+inject|injected|injected|ইঞ্জেক্সন দিয়া
+injure|injured|injured|আঘাত কৰা
+innovate|innovated|innovated|নতুনত্ব আনিব
+inquire|inquired|inquired|সোধা
+insert|inserted|inserted|সোমোৱাই দিয়া
+insist|insisted|insisted|জোৰ দিয়া
+inspect|inspected|inspected|পৰিদৰ্শন কৰা
+inspire|inspired|inspired|অনুপ্ৰাণিত কৰা
+install|installed|installed|স্থাপন কৰা
+instigate|instigated|instigated|উচটনি দিয়া
+instruct|instructed|instructed|নিৰ্দেশ দিয়া
+insult|insulted|insulted|অপমান কৰা
+insure|insured|insured|বীমা কৰা
+integrate|integrated|integrated|একত্ৰিত কৰা
+intercept|intercepted|intercepted|বাধা দিয়া
+interfere|interfered|interfered|হস্তক্ষেপ কৰা
+interpret|interpreted|interpreted|ব্যাখ্যা কৰা
+interrupt|interrupted|interrupted|বাধা দিয়া
+intervene|intervened|intervened|মধ্যস্থতা কৰা
+intimidate|intimidated|intimidated|ভয় খুওৱা
+invade|invaded|invaded|আক্ৰমণ কৰা
+invest|invested|invested|বিনিয়োগ কৰা
+investigate|investigated|investigated|তদন্ত কৰা
+invoke|invoked|invoked|আহ্বান কৰা
+involve|involved|involved|জড়িত কৰা
+irrigate|irrigated|irrigated|জলসিঞ্চন কৰা
+irritate|irritated|irritated|বিৰক্ত কৰা
+isolate|isolated|isolated|পৃথক কৰা
+issue|issued|issued|প্ৰদান কৰা
+jog|jogged|jogged|লাহে লাহে দৌৰা
+joke|joked|joked|ধেমালি কৰা
+judge|judged|judged|বিচাৰ কৰা
+juggle|juggled|juggled|ভেলেচা খেলা
+justify|justified|justified|ন্যায্যতা প্ৰমাণ কৰা
+kick|kicked|kicked|গুদি মৰা
+kidnap|kidnapped|kidnapped|অপহৰণ কৰা
+kiss|kissed|kissed|চুমা খোৱা
+knit|knitted|knitted|বোৱা
+knock|knocked|knocked|টুকুৰিয়াই মৰা
+knot|knotted|knotted|গাঁঠি দিয়া
+label|labelled|labelled|লেবেল লগোৱা
+lament|lamented|lamented|বিলাপ কৰা
+land|landed|landed|অৱতৰণ কৰা
+last|lasted|lasted|স্থায়ী হোৱা
+launch|launched|launched|আৰম্ভ কৰা
+lavish|lavished|lavished|ব্যয় কৰা
+lay|laid|laid|ৰখা
+leak|leaked|leaked|প্ৰকাশ হোৱা
+lean|leaned|leaned|হেলনীয়া হোৱা
+lease|leased|leased|ইজাৰা লোৱা
+lecture|lectured|lectured|বক্তৃতা দিয়া
+lengthen|lengthened|lengthened|দীঘল কৰা
+lessen|lessened|lessened|কম কৰা
+level|levelled|levelled|সমান কৰা
+liberate|liberated|liberated|মুক্ত কৰা
+license|licensed|licensed|অনুজ্ঞাপত্ৰ দিয়া
+lick|licked|licked|চেলেকা
+lift|lifted|lifted|দাঙি তোলা
+limit|limited|limited|সীমাবদ্ধ কৰা
+limp|limped|limped|খোৰা মাৰি খোজ কঢ়া
+link|linked|linked|সংযোগ কৰা
+liquidate|liquidated|liquidated|নগদীকৰণ কৰা
+list|listed|listed|তালিকাভুক্ত কৰা
+load|loaded|loaded|বোজাই কৰা
+loan|loaned|loaned|ঋণ দিয়া
+locate|located|located|স্থিতি নিৰ্ধাৰণ কৰা
+lock|locked|locked|তলা লগোৱা
+lodge|lodged|lodged|থকাৰ ব্যৱস্থা কৰা
+long|longed|longed|হাবিয়াস কৰা
+loom|loomed|loomed|ওচৰ চাপি অহা
+loop|looped|looped|লুপ কৰা
+loose|loosed|loosed|ঢিলা কৰা
+loosen|loosened|loosened|ঢিলা কৰা
+lower|lowered|lowered|তললৈ নমাই দিয়া
+magnify|magnified|magnified|ডাঙৰ কৰি দেখুওৱা
+maintain|maintained|maintained|ৰক্ষণাবেক্ষণ কৰা
+manoeuvre|manoeuvred|manoeuvred|কৌশল কৰা
+manufacture|manufactured|manufactured|উৎপাদন কৰা
+march|marched|marched|কুচকাওৰা কৰা
+mark|marked|marked|চিহ্নিত কৰা
+marvel|marvelled|marvelled|আচৰিত হোৱা
+mask|masked|masked|মুখা পিন্ধা
+master|mastered|mastered|আয়ত্ত কৰা
+match|matched|matched|মিলোৱা
+materialise|materialised|materialised|বাস্তৱত পৰিণত হোৱা
+matter|mattered|mattered|গুৰুত্বপূৰ্ণ হোৱা
+mature|matured|matured|পৰিপক্ব হোৱা
+measure|measured|measured|জোখ লোৱা
+mediate|mediated|mediated|মধ্যস্থতা কৰা
+melt|melted|melted|গলি যোৱা
+memorise|memorised|memorised|মুখস্থ কৰা
+mend|mended|mended|মেৰামতি কৰা
+mention|mentioned|mentioned|উল্লেখ কৰা
+merge|merged|merged|একত্ৰিত হোৱা
+merit|merited|merited|যোগ্য হোৱা
+migrate|migrated|migrated|প্ৰব্ৰজন কৰা
+mimic|mimicked|mimicked|অনুকৰণ কৰা
+mind|minded|minded|মনত ৰখা
+mislead|misled|misled|বিপথে পৰিচালিত কৰা
+mistake|mistook|mistaken|ভুল কৰা
+misunderstand|misunderstood|misunderstood|ভুল বুজা
+mix|mixed|mixed|মিহলোৱা
+moan|moaned|moaned|কেঁকাই উঠা
+mobilise|mobilised|mobilised|সংগঠিত কৰা
+mock|mocked|mocked|উপহাস কৰা
+modify|modified|modified|সলনি কৰা
+monitor|monitored|monitored|নিৰীক্ষণ কৰা
+motivate|motivated|motivated|অনুপ্ৰাণিত কৰা
+mount|mounted|mounted|আৰোহণ কৰা
+mourn|mourned|mourned|শোক কৰা
+multiply|multiplied|multiplied|পূৰণ কৰা
+murmur|murmured|murmured|গুণগুণ কৰা
+mutter|muttered|muttered|মনতে কোৱা
+nail|nailed|nailed|পতা মৰা
+name|named|named|নাম দিয়া
+narrate|narrated|narrated|বৰ্ণনা কৰা
+navigate|navigated|navigated|পথ নিৰ্দেশনা কৰা
+neglect|neglected|neglected|অৱহেলা কৰা
+negotiate|negotiated|negotiated|আলোচনা কৰা
+nod|nodded|nodded|মূৰ জোকাৰা
+nominate|nominated|nominated|মনোনীত কৰা
+normalise|normalised|normalised|স্বাভাৱিক কৰা
+note|noted|noted|মন কৰা
+notice|noticed|noticed|লক্ষ্য কৰা
+notify|notified|notified|জান দিয়া
+nourish|nourished|nourished|পুষ্টি যোগোৱা
+nullify|nullified|nullified|বাতিল কৰা
+nurse|nursed|nursed|যত্ন লোৱা
+obey|obeyed|obeyed|মানি চলা
+object|objected|objected|আপত্তি কৰা
+oblige|obliged|obliged|বাধ্য কৰা
+observe|observed|observed|পৰ্যবেক্ষণ কৰা
+obstruct|obstructed|obstructed|বাধা দিয়া
+obtain|obtained|obtained|লাভ কৰা
+occupy|occupied|occupied|দখল কৰা
+occur|occurred|occurred|ঘটা
+offer|offered|offered|আগবঢ়োৱা
+officiate|officiated|officiated|কৰ্তব্য পালন কৰা
+operate|operated|operated|কাৰ্য্য চলোৱা
+oppose|opposed|opposed|বিৰোধিতা কৰা
+optimise|optimised|optimised|অনুকূল কৰা
+orbit|orbited|orbited|কক্ষপথত ঘূৰা
+organise|organised|organised|সংগঠিত কৰা
+originate|originated|originated|উৎপত্তি হোৱা
+overcome|overcame|overcome|জয় কৰা
+overlook|overlooked|overlooked|আওকাণ কৰা
+overpower|overpowered|overpowered|পৰাস্ত কৰা
+overtake|overtook|overtaken|অতিক্ৰম কৰা
+owe|owed|owed|ঋণী হোৱা
+own|owned|owned|মালিকীস্বত্ব ৰখা
+pacify|pacified|pacified|শান্ত কৰা
+pack|packed|packed|পেক কৰা
+paint|painted|painted|ৰং কৰা
+park|parked|parked|পাৰ্ক কৰা
+participate|participated|participated|অংশগ্ৰহণ কৰা
+pass|passed|passed|পাছ কৰা
+paste|pasted|pasted|লগোৱা
+pat|patted|patted|মৰমেৰে চপৰিওৱা
+patch|patched|patched|তালি দিয়া
+pause|paused|paused|বিৰতি লোৱা
+peep|peeped|peeped|উঁকি মৰা
+perceive|perceived|perceived|অনুভৱ কৰা
+perform|performed|performed|পৰিৱেশন কৰা
+permit|permitted|permitted|অনুমতি দিয়া
+persist|persisted|persisted|অবিৰত থাকা
+persuade|persuaded|persuaded|বুজাই কোৱা
+phone|phoned|phoned|ফোন কৰা
+photograph|photographed|photographed|ফটো তোলা
+pick|picked|picked|বাছি লোৱা
+picture|pictured|pictured|কল্পনা কৰা
+pierce|pierced|pierced|ফুটা কৰা
+pile|piled|piled|দম কৰা
+pinch|pinched|pinched|চিকুট মৰা
+place|placed|placed|ৰখা
+plan|planned|planned|পৰিকল্পনা কৰা
+plant|planted|planted|ৰোপণ কৰা
+plead|pleaded|pleaded|অনুৰোধ কৰা
+please|pleased|pleased|সন্তুষ্ট কৰা
+pledge|pledged|pledged|প্ৰতিজ্ঞা কৰা
+plot|plotted|plotted|ষড়যন্ত্ৰ কৰা
+plunge|plunged|plunged|জাঁপ দিয়া
+polish|polished|polished|চক্চকীয়া কৰা
+pollute|polluted|polluted|প্ৰদূষিত কৰা
+ponder|pondered|pondered|গভীৰভাৱে চিন্তা কৰা
+possess|possessed|possessed|অধিকাৰ কৰা
+post|posted|posted|পোষ্ট কৰা
+postpone|postponed|postponed|স্থগিত ৰখা
+pour|poured|poured|ঢালি দিয়া
+praise|praised|praised|প্ৰশংসা কৰা
+pray|prayed|prayed|প্ৰাৰ্থনা কৰা
+preach|preached|preached|প্ৰচাৰ কৰা
+precede|preceded|preceded|আগত যোৱা
+predict|predicted|predicted|ভৱিষ্যদ্বাণী কৰা
+prescribe|prescribed|prescribed|ঔষধ লিখি দিয়া
+preserve|preserved|preserved|সংৰক্ষণ কৰা
+preside|presided|presided|সভাপতিত্ব কৰা
+press|pressed|pressed|চেপা
+presume|presumed|presumed|ধৰি লোৱা
+pretend|pretended|pretended|ভাও ধৰা
+print|printed|printed|ছপা কৰা
+proceed|proceeded|proceeded|আগবাঢ়ি যোৱা
+proclaim|proclaimed|proclaimed|ঘোষণা কৰা
+procure|procured|procured|যোগাৰ কৰা
+profess|professed|professed|স্বীকাৰ কৰা
+programme|programmed|programmed|কাৰ্যসূচী কৰা
+progress|progressed|progressed|অগ্ৰগতি কৰা
+prohibit|prohibited|prohibited|নিষেধ কৰা
+project|projected|projected|প্ৰক্ষেপ কৰা
+prolong|prolonged|prolonged|দীঘলীয়া কৰা
+promote|promoted|promoted|উন্নীত কৰা
+prompt|prompted|prompted|উদ্বুদ্ধ কৰা
+pronounce|pronounced|pronounced|উচ্চাৰণ কৰা
+propose|proposed|proposed|প্ৰস্তাৱ দিয়া
+prosecute|prosecuted|prosecuted|গোচৰ তৰা
+prosper|prospered|prospered|সমৃদ্ধিশালী হোৱা
+protest|protested|protested|প্ৰতিবাদ কৰা
+provide|provided|provided|যোগান ধৰা
+provoke|provoked|provoked|উচটনি দিয়া
+publish|published|published|প্ৰকাশ কৰা
+pull|pulled|pulled|টনা
+pump|pumped|pumped|পাম্প কৰা
+punch|punched|punched|ঘোচা মৰা
+punish|punished|punished|শাস্তি দিয়া
+purchase|purchased|purchased|কিনা
+purify|purified|purified|শুদ্ধ কৰা
+pursue|pursued|pursued|অনুসৰণ কৰা
+push|pushed|pushed|ঠেলা
+qualify|qualified|qualified|যোগ্যতা অৰ্জন কৰা
+quantify|quantified|quantified|পৰিমাণ নিৰ্ধাৰণ কৰা
+quarrel|quarrelled|quarrelled|কাজিয়া কৰা
+quench|quenched|quenched|পিয়াহ মাৰা
+question|questioned|questioned|প্ৰশ্ন কৰা
+quit|quit|quit|এৰি দিয়া
+quote|quoted|quoted|উদ্ধৃতি দিয়া
+race|raced|raced|দৌৰ প্ৰতিযোগিতা কৰা
+radiate|radiated|radiated|বিকিৰণ কৰা
+raid|raided|raided|আক্ৰমণ কৰা
+raise|raised|raised|দাঙি তোলা
+rally|rallied|rallied|একত্ৰিত কৰা
+range|ranged|ranged|শ্ৰেণীবদ্ধ কৰা
+rank|ranked|ranked|স্থান দিয়া
+rate|rated|rated|মূল্যাংকন কৰা
+react|reacted|reacted|প্ৰতিক্ৰিয়া কৰা
+realise|realised|realised|উপলব্ধি কৰা
+reappear|reappeared|reappeared|পুনৰ দেখা দিয়া
+rearrange|rearranged|rearranged|পুনৰ সজোৱা
+reason|reasoned|reasoned|যুক্তি দিয়া
+rebel|rebelled|rebelled|বিদ্ৰোহ কৰা
+rebuild|rebuilt|rebuilt|পুনৰ নিৰ্মাণ কৰা
+recall|recalled|recalled|মনত পেলোৱা
+recite|recited|recited|আবৃত্তি কৰা
+recommend|recommended|recommended|পৰামৰ্শ দিয়া
+reconcile|reconciled|reconciled|মিলোৱা
+recover|recovered|recovered|আৰোগ্য লাভ কৰা
+recruit|recruited|recruited|নিয়োগ কৰা
+recycle|recycled|recycled|পুনৰ্ব্যৱহাৰ কৰা
+refer|referred|referred|উল্লেখ কৰা
+reflect|reflected|reflected|প্ৰতিফলিত কৰা
+reform|reformed|reformed|সংস্কাৰ কৰা
+refresh|refreshed|refreshed|সতেজ কৰা
+regard|regarded|regarded|গণ্য কৰা
+register|registered|registered|পঞ্জীয়ন কৰা
+regret|regretted|regretted|অনুশোচনা কৰা
+regulate|regulated|regulated|নিয়ন্ত্ৰণ কৰা
+rehearse|rehearsed|rehearsed|অনুশীলন কৰা
+reign|reigned|reigned|ৰাজত্ব কৰা
+reinforce|reinforced|reinforced|সবল কৰা
+reject|rejected|rejected|নাকচ কৰা
+rejoice|rejoiced|rejoiced|আনন্দ কৰা
+release|released|released|মুকলি কৰা
+relieve|relieved|relieved|উপশম কৰা
+rely|relied|relied|নিৰ্ভৰ কৰা
+remain|remained|remained|থাকি যোৱা
+remark|remarked|remarked|মন্তব্য কৰা
+remind|reminded|reminded|মনত পেলাই দিয়া
+render|rendered|rendered|প্ৰদান কৰা
+renew|renewed|renewed|নবীকৰণ কৰা
+rent|rented|rented|ভাড়ালৈ লোৱা
+represent|represented|represented|প্ৰতিনিধিত্ব কৰা
+reproduce|reproduced|reproduced|পুনৰুৎপাদন কৰা
+request|requested|requested|অনুৰোধ কৰা
+require|required|required|প্ৰয়োজন হোৱা
+rescue|rescued|rescued|উদ্ধাৰ কৰা
+research|researched|researched|গৱেষণা কৰা
+resemble|resembled|resembled|সাদৃশ্য থকা
+reserve|reserved|reserved|সংৰক্ষণ কৰা
+reside|resided|resided|বাস কৰা
+resign|resigned|resigned|পদত্যাগ কৰা
+resist|resisted|resisted|প্ৰতিৰোধ কৰা
+resolve|resolved|resolved|সমাধান কৰা
+respect|respected|respected|সন্মান কৰা
+respond|responded|responded|সঁহাৰি দিয়া
+restore|restored|restored|পুনৰুদ্ধাৰ কৰা
+restrict|restricted|restricted|সীমাবদ্ধ কৰা
+result|resulted|resulted|ফলাফল দিয়া
+resume|resumed|resumed|পুনৰ আৰম্ভ কৰা
+retain|retained|retained|ধৰি ৰখা
+retire|retired|retired|অৱসৰ লোৱা
+retreat|retreated|retreated|পিছুৱাই যোৱা
+reveal|revealed|revealed|প্ৰকাশ কৰা
+review|reviewed|reviewed|পৰ্যালোচনা কৰা
+revise|revised|revised|পুনৰীক্ষণ কৰা
+revive|revived|revived|পুনৰ্জীৱিত কৰা
+reward|rewarded|rewarded|পুৰস্কৃত কৰা
+rinse|rinsed|rinsed|ধুই পেলোৱা
+riot|rioted|rioted|দাঙ্গা কৰা
+rip|ripped|ripped|ছিঙি পেলোৱা
+risk|risked|risked|বিপদ মোলোৱা
+roam|roamed|roamed|ঘূৰি ফুৰা
+roar|roared|roared|গৰ্জন কৰা
+roast|roasted|roasted|ভজা
+rob|robbed|robbed|ডকাইতি কৰা
+rock|rocked|rocked|দোলা
+roll|rolled|rolled|গচকি যোৱা
+rot|rotted|rotted|পচা
+rub|rubbed|rubbed|ঘঁহা
+ruin|ruined|ruined|ধ্বংস কৰা
+rule|ruled|ruled|শাসন কৰা
+rush|rushed|rushed|খৰধৰ কৰা
+sabotage|sabotaged|sabotaged|ধ্বংস কৰা
+sacrifice|sacrificed|sacrificed|বলি দিয়া
+saddle|saddled|saddled|জিন পিন্ধোৱা
+sail|sailed|sailed|নাও চলোৱা
+salvage|salvaged|salvaged|উদ্ধাৰ কৰা
+sample|sampled|sampled|নমুনা লোৱা
+sanction|sanctioned|sanctioned|অনুমোদন দিয়া
+satisfy|satisfied|satisfied|সন্তুষ্ট কৰা
+saturate|saturated|saturated|পৰিপূৰ্ণ কৰা
+savour|savoured|savoured|সোৱাদ লোৱা
+scan|scanned|scanned|স্কেন কৰা
+scare|scared|scared|ভয় খুওৱা
+scatter|scattered|scattered|সিঁচৰিত কৰা
+schedule|scheduled|scheduled|সময়সূচী কৰা
+scold|scolded|scolded|বকা
+scoop|scooped|scooped|খোছা মাৰি লোৱা
+scorch|scorched|scorched|পুৰি পেলোৱা
+score|scored|scored|স্ক'ৰ কৰা
+scramble|scrambled|scrambled|ধুমুহাৰ দৰে দৌৰা
+scrap|scrapped|scrapped|বাতিল কৰা
+scrape|scraped|scraped|ঘঁহি পেলোৱা
+scratch|scratched|scratched|আঁচুৰ মৰা
+scream|screamed|screamed|চিৎকাৰ কৰা
+screen|screened|screened|পৰ্দাত দেখুওৱা
+screw|screwed|screwed|স্ক্ৰু লগোৱা
+scribble|scribbled|scribbled|আঁকি-বাকি লিখা
+scrub|scrubbed|scrubbed|ঘঁহি পৰিষ্কাৰ কৰা
+seal|sealed|sealed|মোহৰ মৰা
+search|searched|searched|বিচৰা
+season|seasoned|seasoned|সিজন কৰা
+seat|seated|seated|বহুওৱা
+secure|secured|secured|সুৰক্ষিত কৰা
+seduce|seduced|seduced|প্ৰলোভিত কৰা
+seem|seemed|seemed|যেন লগা
+seize|seized|seized|জব্দ কৰা
+select|selected|selected|বাছনি কৰা
+sense|sensed|sensed|অনুভৱ কৰা
+sentence|sentenced|sentenced|শাস্তি দিয়া
+separate|separated|separated|পৃথক কৰা
+serve|served|served|সেৱা কৰা
+settle|settled|settled|স্থিৰ কৰা
+sever|severed|severed|কাটি পেলোৱা
+sew|sewed|sewn|চিলাই কৰা
+shape|shaped|shaped|আকৃতি দিয়া
+share|shared|shared|ভাগ কৰা
+shatter|shattered|shattered|চূৰমাৰ কৰা
+shed|shed|shed|এৰি দিয়া
+ship|shipped|shipped|জাহাজেৰে পঠোৱা
+shiver|shivered|shivered|কঁপনি উঠা
+shop|shopped|shopped|কিনা-বেচা কৰা
+shout|shouted|shouted|চিৎকাৰ কৰা
+shove|shoved|shoved|ঠেলি দিয়া
+shrink|shrank|shrunk|সৰু হোৱা
+shrug|shrugged|shrugged|কান্ধ জোকাৰা
+shudder|shuddered|shuddered|কঁপনি উঠা
+sigh|sighed|sighed|উশাহ এৰা
+sign|signed|signed|স্বাক্ষৰ কৰা
+signal|signalled|signalled|সংকেত দিয়া
+signify|signified|signified|সূচোৱা
+sip|sipped|sipped|লাহে লাহে পান কৰা
+sketch|sketched|sketched|স্কেচ কৰা
+ski|skied|skied|স্কী কৰা
+skip|skipped|skipped|জঁপিয়াই যোৱা
+slam|slammed|slammed|জোৰেৰে মৰা
+slap|slapped|slapped|চৰ মৰা
+slice|sliced|sliced|টুকুৰা কটা
+slip|slipped|slipped|পিছলি পৰা
+slow|slowed|slowed|লেহেমীয়া কৰা
+smash|smashed|smashed|চূৰমাৰ কৰা
+smile|smiled|smiled|হাঁহি মৰা
+smoke|smoked|smoked|ধোঁৱা খোৱা
+smooth|smoothed|smoothed|মসৃণ কৰা
+snap|snapped|snapped|ভাঙি যোৱা
+snatch|snatched|snatched|কাঢ়ি লোৱা
+sneeze|sneezed|sneezed|হাঁচি মৰা
+sniff|sniffed|sniffed|শুঁকা
+soar|soared|soared|ওপৰলৈ উৰা
+sob|sobbed|sobbed|ফেকুৰি কান্দা
+soften|softened|softened|কোমল কৰা
+solve|solved|solved|সমাধান কৰা
+soothe|soothed|soothed|শান্ত কৰা
+sort|sorted|sorted|শ্ৰেণীবদ্ধ কৰা
+sow|sowed|sown|সিঁচা
+spare|spared|spared|ৰেহাই দিয়া
+spark|sparked|sparked|স্ফুলিংগ সৃষ্টি কৰা
+specify|specified|specified|নিৰ্দিষ্ট কৰা
+speed|sped|sped|গতি বঢ়োৱা
+spell|spelt|spelt|বানান কৰা
+spill|spilt|spilt|ঢালি পেলোৱা
+splash|splashed|splashed|ছিটিকি পৰা
+split|split|split|ফালি যোৱা
+spoil|spoilt|spoilt|নষ্ট কৰা
+sponsor|sponsored|sponsored|পৃষ্ঠপোষকতা কৰা
+spot|spotted|spotted|চিনাক্ত কৰা
+spray|sprayed|sprayed|স্প্ৰে কৰা
+spring|sprang|sprung|জঁপিয়াই উঠা
+sprinkle|sprinkled|sprinkled|ছটিয়াই দিয়া
+sprint|sprinted|sprinted|দ্ৰুতগতিত দৌৰা
+sprout|sprouted|sprouted|অংকুৰিত হোৱা
+squeeze|squeezed|squeezed|চেপি ধৰা
+stab|stabbed|stabbed|ছুৰী মৰা
+stabilise|stabilised|stabilised|স্থিৰ কৰা
+stack|stacked|stacked|দম কৰা
+stain|stained|stained|দাগ লগোৱা
+stamp|stamped|stamped|মোহৰ মৰা
+stare|stared|stared|একেথৰে চোৱা
+starve|starved|starved|অনাহাৰে থকা
+state|stated|stated|উল্লেখ কৰা
+steer|steered|steered|পৰিচালনা কৰা
+stem|stemmed|stemmed|উৎপন্ন হোৱা
+step|stepped|stepped|খোজ দিয়া
+stimulate|stimulated|stimulated|উদ্দীপিত কৰা
+stir|stirred|stirred|মিহলোৱা
+stock|stocked|stocked|মজুত কৰা
+stoop|stooped|stooped|নত হোৱা
+store|stored|stored|সঞ্চয় কৰা
+strengthen|strengthened|strengthened|সবল কৰা
+stress|stressed|stressed|গুৰুত্ব দিয়া
+stretch|stretched|stretched|টানি মেলা
+stride|strode|stridden|ডাঙৰ খোজেৰে খোজ কঢ়া
+string|strung|strung|সূতাত গঁথা
+strip|stripped|stripped|খুলি পেলোৱা
+strive|strove|striven|যত্ন কৰা
+stroke|stroked|stroked|হাত ফুৰোৱা
+structure|structured|structured|গঠন কৰা
+struggle|struggled|struggled|সংগ্ৰাম কৰা
+stumble|stumbled|stumbled|খুন্দা খাই পৰা
+stun|stunned|stunned|আচৰিত কৰা
+submit|submitted|submitted|দাখিল কৰা
+subscribe|subscribed|subscribed|চাবস্ক্ৰাইব কৰা
+substitute|substituted|substituted|সলনি কৰা
+subtract|subtracted|subtracted|বিয়োগ কৰা
+suck|sucked|sucked|চুহি লোৱা
+suffocate|suffocated|suffocated|উশাহ বন্ধ হোৱা
+suit|suited|suited|উপযুক্ত হোৱা
+summarise|summarised|summarised|সাৰাংশ দিয়া
+supervise|supervised|supervised|তদাৰক কৰা
+supply|supplied|supplied|যোগান ধৰা
+support|supported|supported|সমৰ্থন কৰা
+suppose|supposed|supposed|ধৰি লোৱা
+suppress|suppressed|suppressed|দমন কৰা
+surge|surged|surged|ঢৌৰ দৰে বঢ়া
+surpass|surpassed|surpassed|অতিক্ৰম কৰা
+surrender|surrendered|surrendered|আত্মসমৰ্পণ কৰা
+surround|surrounded|surrounded|বেৰি ধৰা
+survey|surveyed|surveyed|সমীক্ষা কৰা
+survive|survived|survived|জীয়াই থকা
+suspect|suspected|suspected|সন্দেহ কৰা
+suspend|suspended|suspended|স্থগিত ৰখা
+sustain|sustained|sustained|ধৰি ৰখা
+swallow|swallowed|swallowed|গিলি পেলোৱা
+swap|swapped|swapped|বিনিময় কৰা
+sweat|sweated|sweated|ঘাম মেলা
+swell|swelled|swollen|ফুলা
+switch|switched|switched|সলনি কৰা
+symbolise|symbolised|symbolised|প্ৰতীকিত কৰা
+sympathise|sympathised|sympathised|সহানুভূতি কৰা
+tackle|tackled|tackled|সন্মুখীন হোৱা
+tag|tagged|tagged|টেগ কৰা
+tailor|tailored|tailored|দৰ্জীৰ কাম কৰা
+tame|tamed|tamed|পোহনীয়া কৰা
+tap|tapped|tapped|টুকুৰিয়াই মৰা
+target|targeted|targeted|লক্ষ্য নিৰ্ধাৰণ কৰা
+taste|tasted|tasted|সোৱাদ লোৱা
+tease|teased|teased|জোকোৱা
+telephone|telephoned|telephoned|টেলিফোন কৰা
+tempt|tempted|tempted|প্ৰলোভিত কৰা
+tend|tended|tended|প্ৰৱণতা থকা
+terminate|terminated|terminated|সমাপ্ত কৰা
+terrify|terrified|terrified|ভয় খুওৱা
+test|tested|tested|পৰীক্ষা কৰা
+thank|thanked|thanked|ধন্যবাদ দিয়া
+threaten|threatened|threatened|ভাবুকি দিয়া
+thrill|thrilled|thrilled|ৰোমাঞ্চিত কৰা
+thrive|throve|thriven|উন্নতি কৰা
+throb|throbbed|throbbed|ধপধপাই উঠা
+tick|ticked|ticked|টিক দিয়া
+tie|tied|tied|বান্ধা
+tighten|tightened|tightened|টান কৰা
+tilt|tilted|tilted|হেলনীয়া কৰা
+time|timed|timed|সময় নিৰ্ধাৰণ কৰা
+tip|tipped|tipped|টিপ দিয়া
+tire|tired|tired|ভাগৰুৱা কৰা
+tolerate|tolerated|tolerated|সহ্য কৰা
+toll|tolled|tolled|ঘণ্টা বজোৱা
+tour|toured|toured|ভ্ৰমণ কৰা
+tow|towed|towed|টানি নিয়া
+trace|traced|traced|অনুসন্ধান কৰা
+track|tracked|tracked|অনুসৰণ কৰা
+trade|traded|traded|বেপাৰ কৰা
+train|trained|trained|প্ৰশিক্ষণ দিয়া
+transfer|transferred|transferred|স্থানান্তৰ কৰা
+transform|transformed|transformed|ৰূপান্তৰ কৰা
+translate|translated|translated|অনুবাদ কৰা
+transmit|transmitted|transmitted|প্ৰেৰণ কৰা
+transport|transported|transported|পৰিবহন কৰা
+trap|trapped|trapped|ফান্দত ধৰা
+treat|treated|treated|ব্যৱহাৰ কৰা
+tremble|trembled|trembled|কঁপনি উঠা
+trick|tricked|tricked|ঠগোৱা
+trigger|triggered|triggered|আৰম্ভ কৰোৱা
+trim|trimmed|trimmed|চুটি কৰা
+trip|tripped|tripped|পিছলি পৰা
+triumph|triumphed|triumphed|জয়লাভ কৰা
+trot|trotted|trotted|ধীৰে দৌৰা
+trouble|troubled|troubled|সমস্যা কৰা
+trust|trusted|trusted|বিশ্বাস কৰা
+tuck|tucked|tucked|সুমুৱাই দিয়া
+tumble|tumbled|tumbled|বাগৰি পৰা
+tune|tuned|tuned|সুৰ মিলোৱা
+twist|twisted|twisted|মেৰিওৱা
+type|typed|typed|টাইপ কৰা
+undergo|underwent|undergone|সহ্য কৰা
+underline|underlined|underlined|ৰেখাংকন কৰা
+undermine|undermined|undermined|দুৰ্বল কৰা
+undertake|undertook|undertaken|হাতত লোৱা
+undo|undid|undone|নিষ্ক্ৰিয় কৰা
+unfold|unfolded|unfolded|প্ৰকাশ কৰা
+unite|united|united|একত্ৰিত কৰা
+unlock|unlocked|unlocked|তলা খোলা
+unpack|unpacked|unpacked|মেলি দিয়া
+urge|urged|urged|অনুৰোধ কৰা
+utilise|utilised|utilised|কামত লগোৱা
+utter|uttered|uttered|উচ্চাৰণ কৰা
+vacate|vacated|vacated|খালী কৰা
+validate|validated|validated|বৈধতা প্ৰদান কৰা
+value|valued|valued|মূল্য দিয়া
+vanish|vanished|vanished|নোহোৱা হোৱা
+vary|varied|varied|সলনি হোৱা
+ventilate|ventilated|ventilated|বতাহ চলোৱা
+venture|ventured|ventured|দুঃসাহস কৰা
+verify|verified|verified|সত্যাপন কৰা
+vibrate|vibrated|vibrated|কম্পিত হোৱা
+view|viewed|viewed|চোৱা
+violate|violated|violated|উলংঘা কৰা
+visualise|visualised|visualised|কল্পনা কৰা
+volunteer|volunteered|volunteered|স্বেচ্ছাসেৱা কৰা
+vote|voted|voted|ভোট দিয়া
+vow|vowed|vowed|প্ৰতিজ্ঞা কৰা
+wade|waded|waded|পানীত খোজ কঢ়া
+wag|wagged|wagged|নচুওৱা
+wander|wandered|wandered|ঘূৰি ফুৰা
+warm|warmed|warmed|গৰম কৰা
+warn|warned|warned|সতৰ্ক কৰা
+wash|washed|washed|ধোৱা
+waste|wasted|wasted|অপচয় কৰা
+wave|waved|waved|হাত জোকাৰা
+weaken|weakened|weakened|দুৰ্বল কৰা
+weigh|weighed|weighed|ওজন কৰা
+welcome|welcomed|welcomed|স্বাগতম জনোৱা
+whip|whipped|whipped|চাবুক মৰা
+whisper|whispered|whispered|ফুচফুচাই কোৱা
+whistle|whistled|whistled|শিঙা বজোৱা
+widen|widened|widened|বহল কৰা
+wink|winked|winked|চকু টিপা
+wipe|wiped|wiped|মচি পেলোৱা
+withdraw|withdrew|withdrawn|প্ৰত্যাহাৰ কৰা
+withhold|withheld|withheld|বিৰত ৰখা
+witness|witnessed|witnessed|সাক্ষী হোৱা
+wonder|wondered|wondered|আচৰিত হোৱা
+wrap|wrapped|wrapped|মেৰিওৱা
+wreck|wrecked|wrecked|ধ্বংস কৰা
+wrestle|wrestled|wrestled|মল্লযুঁজ কৰা
+yawn|yawned|yawned|হামিয়াই তোলা
+yield|yielded|yielded|উৎপাদন কৰা
+zoom|zoomed|zoomed|দ্ৰুতগতিত যোৱা
+`;
+
+/* ---------- STATIVE SUPPLEMENT ---------- */
+const RAW_STATE = `
+abhor|abhorred|abhorred|ঘৃণা কৰা
+abound|abounded|abounded|পৰিপূৰ্ণ হোৱা
+abut|abutted|abutted|লগতে থকা
+ache|ached|ached|বিষোৱা
+adjoin|adjoined|adjoined|লগতে থকা
+ail|ailed|ailed|অসুস্থ হোৱা
+amount|amounted|amounted|পৰিমাণ হোৱা
+ascertain|ascertained|ascertained|নিশ্চিত কৰা
+attest|attested|attested|প্ৰমাণ দিয়া
+avow|avowed|avowed|স্বীকাৰ কৰা
+begrudge|begrudged|begrudged|ঈৰ্ষা কৰা
+conjecture|conjectured|conjectured|অনুমান কৰা
+covet|coveted|coveted|লোভ কৰা
+crave|craved|craved|প্ৰবল ইচ্ছা কৰা
+deem|deemed|deemed|গণ্য কৰা
+detest|detested|detested|ঘৃণা কৰা
+disbelieve|disbelieved|disbelieved|অবিশ্বাস কৰা
+discredit|discredited|discredited|অবিশ্বাস কৰা
+distrust|distrusted|distrusted|অবিশ্বাস কৰা
+envisage|envisaged|envisaged|কল্পনা কৰা
+face|faced|faced|মুখ কৰি থকা
+fancy|fancied|fancied|পছন্দ কৰা / কল্পনা কৰা
+flank|flanked|flanked|কাষত থকা
+grudge|grudged|grudged|বিৰাগ কৰা
+idolize|idolized|idolized|পূজা কৰা
+interest|interested|interested|আগ্ৰহ জন্মোৱা
+itch|itched|itched|চুলি কোবোৱা
+loathe|loathed|loathed|ঘৃণা কৰা
+number|numbered|numbered|সংখ্যা হোৱা
+opine|opined|opined|মত দিয়া
+overflow|overflowed|overflowed|উপচি পৰা
+pertain|pertained|pertained|সম্পৰ্কিত হোৱা
+pity|pitied|pitied|দয়া কৰা
+prize|prized|prized|মূল্য দিয়া
+recollect|recollected|recollected|মনত পেলোৱা
+resent|resented|resented|অসন্তুষ্ট হোৱা
+revere|revered|revered|শ্ৰদ্ধা কৰা
+scorn|scorned|scorned|ঘৃণা কৰা
+smart|smarted|smarted|বিষোৱা
+speculate|speculated|speculated|অনুমান কৰা
+swarm|swarmed|swarmed|ভৰি থকা
+teem|teemed|teemed|ভৰি থকা
+testify|testified|testified|সাক্ষ্য দিয়া
+tingle|tingled|tingled|জিনজিনি উঠা
+total|totalled|totalled|মুঠ হোৱা
+treasure|treasured|treasured|মূল্য দিয়া
+vouch|vouched|vouched|নিশ্চিত কৰা
+yearn|yearned|yearned|হাবিয়াস কৰা
+`;
+
+/* Verbs that are stative / non-continuous in their main meaning */
+const STATIVE_SET = new Set(`
+be,have,know,believe,understand,recognize,remember,forget,realize,mean,agree,disagree,deny,admit,
+assume,presume,suspect,trust,doubt,conclude,infer,imply,signify,indicate,denote,represent,symbolize,
+consist,comprise,contain,include,exclude,involve,concern,pertain,relate,correspond,depend,rely,require,
+need,lack,own,possess,belong,owe,deserve,cost,equal,resemble,differ,seem,appear,look,sound,taste,smell,
+feel,see,hear,notice,perceive,sense,detect,observe,witness,like,love,hate,prefer,want,wish,desire,adore,
+detest,despise,dislike,envy,fear,dread,regret,mind,care,appreciate,value,respect,esteem,admire,worship,
+revere,please,satisfy,interest,matter,fit,suit,measure,weigh,exist,abhor,acknowledge,approve,attribute,
+consider,constitute,contradict,convince,disbelieve,discern,distrust,envisage,estimate,expect,fancy,guess,
+hold,hope,imagine,impress,judge,long,object,oppose,pity,recall,recollect,regard,suppose,think,accept,
+anticipate,ascertain,assert,attest,avow,comprehend,conceive,confide,conjecture,deem,discredit,favour,
+foresee,grasp,maintain,opine,speculate,swear,testify,vouch,yearn,crave,loathe,cherish,honour,idolize,
+miss,prize,treasure,begrudge,covet,disdain,grudge,resent,scorn,ache,ail,hurt,itch,sting,tingle,throb,
+burn,smart,swell,abound,teem,swarm,overflow,exceed,match,surpass,total,amount,number,last,remain,stay,
+keep,occupy,cover,border,adjoin,abut,flank,face,overlook,surround,encircle,can
+`.split(',').map(s=>s.trim()).filter(Boolean));
+
+/* =====================================================================
+   BUILD MASTER LIST
+   ===================================================================== */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function parseRows(raw){
+  return raw.trim().split('\n').map(l => l.trim()).filter(Boolean).map(line => {
+    const p = line.split('|').map(s => s.trim());
+    return { v1:p[0]||'', v2:p[1]||'—', v3:p[2]||'—', as:p[3]||'' };
+  });
+}
+
+const MASTER = new Map();
+function ingest(rows){
+  rows.forEach(o => {
+    const k = o.v1.toLowerCase();
+    if(!MASTER.has(k)) MASTER.set(k, Object.assign({}, o, { key:k }));
+  });
+}
+ingest(parseRows(RAW_CORE));
+ingest(parseRows(RAW_EXTRA));
+ingest(parseRows(RAW_STATE));
+
+const VERBS = Array.from(MASTER.values()).map(o => {
+  o.state = STATIVE_SET.has(o.key);
+  return o;
+}).sort((a,b) => a.v1.localeCompare(b.v1, 'en'));
+
+/* =====================================================================
+   s / es / ies GENERATOR
+   ===================================================================== */
+const NO_S = new Set(['can','may','must','shall','will','am/is/are','be']);
+function sForm(k){
+  const s = k.toLowerCase();
+  if(s === 'be')   return 'is / am / are';
+  if(s === 'have') return 'has';
+  if(NO_S.has(s))  return '—';
+  if(/(s|x|z|ch|sh|o)$/.test(s)) return s + 'es';
+  if(/[^aeiou]y$/.test(s))       return s.slice(0,-1) + 'ies';
+  return s + 's';
+}
+
+/* =====================================================================
+   IRREGULAR DETECTION
+   ===================================================================== */
+function regularSet(v){
+  const k = v.toLowerCase(), set = new Set();
+  set.add(k + 'ed');
+  if(k.endsWith('e')) set.add(k + 'd');
+  if(/[^aeiou]y$/.test(k)) set.add(k.slice(0,-1) + 'ied');
+  if(/[^aeiou][aeiou][bdgklmnprt]$/.test(k)) set.add(k + k.slice(-1) + 'ed');
+  return set;
+}
+function isIrregular(o){
+  if(o.v2 === '—' && o.v3 === '—') return false;
+  const reg = regularSet(o.v1);
+  const p2 = o.v2.toLowerCase(), p3 = o.v3.toLowerCase();
+  if(p2 !== '—' && !reg.has(p2)) return true;
+  if(p3 !== '—' && !reg.has(p3)) return true;
+  return false;
+}
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+const STATE = { q:'', tab:'all', letter:'*', shown:0 };
+const PAGE = 60;
+let FILTERED = [];
+
+/* =====================================================================
+   FILTERING
+   ===================================================================== */
+function computeList(){
+  const q = STATE.q.trim().toLowerCase();
+  return VERBS.filter(o => {
+    if(STATE.tab === 'irr'   && !isIrregular(o)) return false;
+    if(STATE.tab === 'reg'   &&  isIrregular(o)) return false;
+    if(STATE.tab === 'state' && !o.state)        return false;
+    if(STATE.letter !== '*' && o.v1[0].toLowerCase() !== STATE.letter) return false;
+    if(!q) return true;
+    return o.v1.toLowerCase().includes(q)
+        || o.v2.toLowerCase().includes(q)
+        || o.v3.toLowerCase().includes(q)
+        || o.as.includes(q);
+  });
+}
+
+/* =====================================================================
+   RENDER
+   ===================================================================== */
+function cardHTML(o, n){
+  const irr = isIrregular(o);
+  return `<article class="vcard">
+    <div class="vhead">
+      <span class="vnum">${n}</span>
+      <h3 class="v1">${esc(o.v1)}</h3>
+      ${o.state ? '<span class="badge reg">stative</span>' : ''}
+      <span class="badge ${irr?'irr':'reg'}">${irr?'irregular':'regular'}</span>
+    </div>
+    <div class="vgrid">
+      <div class="vcell"><span class="vlbl">Past</span><span class="vval">${esc(o.v2)}</span></div>
+      <div class="vcell"><span class="vlbl">Past Part.</span><span class="vval">${esc(o.v3)}</span></div>
+      <div class="vcell"><span class="vlbl">s / es / ies</span><span class="vval">${esc(sForm(o.v1))}</span></div>
+    </div>
+    <div class="vmean">${esc(o.as)}</div>
+  </article>`;
+}
+
+function build(){
+  FILTERED = computeList();
+  STATE.shown = 0;
+  $('#list').empty();
+  $('#resultCount').text(FILTERED.length.toLocaleString() + ' verbs');
+  $('#empty').toggleClass('hidden', FILTERED.length !== 0);
+  renderMore();
+}
+
+function renderMore(){
+  const slice = FILTERED.slice(STATE.shown, STATE.shown + PAGE);
+  if(!slice.length){ $('#loadMore').addClass('hidden'); return; }
+  const html = slice.map((o,i) => cardHTML(o, STATE.shown + i + 1)).join('');
+  $('#list').append(html);
+  STATE.shown += slice.length;
+  $('#loadMore').toggleClass('hidden', STATE.shown >= FILTERED.length);
+}
+
+/* =====================================================================
+   LETTER INDEX
+   ===================================================================== */
+function buildLetters(){
+  const letters = ['*'].concat('abcdefghijklmnopqrstuvwxyz'.split(''));
+  const html = letters.map(l =>
+    `<button class="lt ${l==='*'?'on':''}" data-l="${l}">${l==='*'?'ALL':l.toUpperCase()}</button>`
+  ).join('');
+  $('#letters').html(html);
+}
+
+/* =====================================================================
+   THEME
+   ===================================================================== */
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  $('#themeBtn').text(t === 'dark' ? '🌙' : '☀️');
+  $('meta[name="theme-color"]').attr('content', t === 'dark' ? '#0b1220' : '#f2f6fc');
+  try{ localStorage.setItem('vv-theme', t); }catch(e){}
+}
+function initTheme(){
+  let t = 'dark';
+  try{ t = localStorage.getItem('vv-theme') || 'dark'; }catch(e){}
+  applyTheme(t);
+}
+
+/* =====================================================================
+   TOAST
+   ===================================================================== */
+let toastTimer;
+function toast(msg){
+  clearTimeout(toastTimer);
+  $('#toast').text(msg).addClass('show');
+  toastTimer = setTimeout(() => $('#toast').removeClass('show'), 2600);
+}
+
+/* =====================================================================
+   PRINT / PDF  (with watermark)
+   ===================================================================== */
+function doPrint(){
+  const list = computeList();
+  if(!list.length){ toast('Nothing to print — adjust your filter.'); return; }
+
+  const rows = list.map((o,i) => `<tr>
+      <td>${i+1}</td>
+      <td><b>${esc(o.v1)}</b></td>
+      <td>${esc(o.v2)}</td>
+      <td>${esc(o.v3)}</td>
+      <td>${esc(sForm(o.v1))}</td>
+      <td class="bn">${esc(o.as)}</td>
+    </tr>`).join('');
+
+  const label = {
+    all:'All Verbs', irr:'Irregular Verbs', reg:'Regular Verbs', state:'Stative Verbs'
+  }[STATE.tab];
+
+  const letterNote = STATE.letter === '*' ? '' : ` · Letter "${STATE.letter.toUpperCase()}"`;
+  const qNote = STATE.q.trim() ? ` · Search: "${esc(STATE.q.trim())}"` : '';
+
+  $('#printArea').html(`
+    <div class="print-wm" aria-hidden="true">Muzahid The Tech Master</div>
+    <h1>Verb Vault — English Verb List</h1>
+    <div class="sub">
+      ${esc(label)}${letterNote}${qNote} &nbsp;·&nbsp; ${list.length} verbs &nbsp;·&nbsp;
+      SEBA / AHSEC / CBSE / NCERT reference &nbsp;·&nbsp; ${new Date().toLocaleDateString()}
+      &nbsp;·&nbsp; <b>by Muzahid The Tech Master</b>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:4%">#</th>
+          <th style="width:18%">Present (V1)</th>
+          <th style="width:17%">Past (V2)</th>
+          <th style="width:18%">Past Participle (V3)</th>
+          <th style="width:14%">s / es / ies</th>
+          <th style="width:29%">Assamese Meaning</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="print-credit">© Muzahid The Tech Master · Verb Vault</div>
+  `);
+
+  toast('Tip: choose “Save as PDF” in the print dialog.');
+  setTimeout(() => window.print(), 320);
+}
+
+/* =====================================================================
+   EVENTS
+   ===================================================================== */
+$(function(){
+  initTheme();
+  buildLetters();
+  $('#totalLabel').text(VERBS.length.toLocaleString() + ' verbs · SEBA · AHSEC · CBSE');
+  build();
+
+  /* --- theme --- */
+  $('#themeBtn').on('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  });
+
+  /* --- search --- */
+  let searchTimer;
+  $('#q').on('input', function(){
+    const v = this.value;
+    $('#clearBtn').toggle(v.length > 0);
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => { STATE.q = v; build(); }, 140);
+  });
+  $('#clearBtn').on('click', () => {
+    $('#q').val('').trigger('input').trigger('focus');
+  });
+
+  /* --- tabs --- */
+  $('#tabs').on('click', '.tab', function(){
+    $('.tab').removeClass('on');
+    $(this).addClass('on');
+    STATE.tab = $(this).data('tab');
+    build();
+    $('html,body').animate({ scrollTop: 0 }, 200);
+  });
+
+  /* --- letters --- */
+  $('#letters').on('click', '.lt', function(){
+    $('.lt').removeClass('on');
+    $(this).addClass('on');
+    STATE.letter = $(this).data('l');
+    $('#activeHint').text(STATE.letter === '*' ? 'A – Z' : 'Letter ' + STATE.letter.toUpperCase());
+    build();
+  });
+
+  /* --- load more --- */
+  $('#loadMore').on('click', renderMore);
+
+  /* --- infinite scroll --- */
+  let lock = false;
+  $(window).on('scroll', function(){
+    if(lock) return;
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 400){
+      if(STATE.shown < FILTERED.length){
+        lock = true;
+        renderMore();
+        setTimeout(() => lock = false, 120);
+      }
+    }
+  });
+
+  /* --- bottom nav --- */
+  $('.bottomnav').on('click', '.navbtn', function(){
+    const act = $(this).data('nav');
+    $('.navbtn').removeClass('on');
+    if(act !== 'top' && act !== 'pdf') $(this).addClass('on');
+
+    if(act === 'search'){
+      $('html,body').animate({ scrollTop: 0 }, 220, () => $('#q').trigger('focus'));
+    } else if(act === 'pdf'){
+      doPrint();
+    } else if(act === 'top'){
+      $('html,body').animate({ scrollTop: 0 }, 300);
+      $('.navbtn[data-nav="verbs"]').addClass('on');
+    } else {
+      STATE.tab = 'all'; STATE.letter = '*'; STATE.q = '';
+      $('#q').val(''); $('#clearBtn').hide();
+      $('.tab').removeClass('on').filter('[data-tab="all"]').addClass('on');
+      $('.lt').removeClass('on').filter('[data-l="*"]').addClass('on');
+      $('#activeHint').text('A – Z');
+      build();
+      $('html,body').animate({ scrollTop: 0 }, 300);
+    }
+  });
+
+  /* --- print buttons --- */
+  $('#topPrint').on('click', doPrint);
+
+  /* --- keyboard: Ctrl/Cmd + P uses our table --- */
+  $(document).on('keydown', function(e){
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p'){
+      e.preventDefault();
+      doPrint();
+    }
+  });
+});
+</script>
+</body>
+</html>
